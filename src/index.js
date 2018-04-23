@@ -12,7 +12,6 @@ const App = () => {
   return (
     <div>
       <NavigationBar />
-      <SearchBar />
       <div>
         {Query}
       </div>
