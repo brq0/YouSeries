@@ -21,6 +21,12 @@ ul.header li a:hover {
   color: #5b5757;
 }
 
+.logoutBtn{
+  /* position: absolute;
+  right: 0; */
+}
+
+
 #search{
   color: #111;
   padding-left: 100;
