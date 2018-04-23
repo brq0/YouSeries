@@ -23,11 +23,12 @@ class SearchBar extends Component {
   }
 
   onFocus = () => {
-      document.getElementById("suggContainer").style.display='block'
+      document.getElementById("temp").style.display='block'
   }
 
   onBlur = () => {
-    document.getElementById("suggContainer").style.display='none'
+    console.log("bl")
+    document.getElementById("temp").style.display='none'
   }
 
   onKeyPressed = (e) => {
@@ -55,8 +56,8 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div onBlur={this.onBlur}>
-      <div className="searchContainer">
+      // <div onBlur={this.onBlur}>
+      <div className="searchContainer" onBlur={this.onBlur}>
         <input className="searchInput"
           placeholder="Search for..."
           ref={input => this.search = input}
@@ -64,11 +65,11 @@ class SearchBar extends Component {
           onChange={this.handleInputChange}
           onFocus={this.onFocus}
         />
-        <div className="suggestionContainer--open" id="suggContainer">
+        <div id="temp">
           <Suggestions results={this.state.results} />
         </div>
       </div>
-      </div>
+      // </div>
     )
   }
 }
