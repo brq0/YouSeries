@@ -1,5 +1,5 @@
 .genresContainer{
-  width: 140px;
+  width: 150px;
   height: 100%;
   font-family: Helvetica, sans-serif;
   color: #fff;
@@ -8,6 +8,7 @@
  }
 
 .genre{
+  margin-left: 10px;
   cursor: pointer;
   padding: 10px;
 }
