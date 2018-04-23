@@ -12,9 +12,6 @@ const App = () => {
   return (
     <div>
       <NavigationBar />
-      <div>
-        {Query}
-      </div>
       <GenresMenu />
     </div>
   );

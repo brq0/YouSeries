@@ -1,0 +1,18 @@
+.genresContainer{
+  width: 150px;
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+  font-size: 13px;
+  background-color: #141414
+ }
+
+.genre{
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.genre:hover{
+  color: #5b5757;
+}
