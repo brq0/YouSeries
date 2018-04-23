@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SearchBar from './components/search_bar/search_bar';
 import GenresMenu from './components/genres_menu/genres_menu';
 import NavigationBar from './components/navigation_bar/navigation_bar';
 

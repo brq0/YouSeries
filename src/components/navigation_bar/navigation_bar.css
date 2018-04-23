@@ -2,6 +2,7 @@ ul.header li {
   display: inline;
   list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 ul.header {
   background-color: #111;
@@ -15,15 +16,18 @@ ul.header li a {
   display: inline-block;
 }
 
-ul.header li a:hover(not .active) {
+ul.header li a:hover:not(.active) {
   background-color: #5b5757;
 }
 
 #search{
   color: #111;
+  padding-left: 100;
+  padding-right: 100;
 }
 
 #logo {
    font-size: 24px;
    color: #cc0411;
+   padding-right: 150px;
 }

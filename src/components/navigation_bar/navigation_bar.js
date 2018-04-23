@@ -11,11 +11,11 @@ class NavigationBar extends Component{
     return(
       <div>
         <ul className="header">
-          <li><a id="logo">YouSeries</a></li>
+          <li><a className="active" id="logo">YouSeries</a></li>
           <li><a href="#">Stronga Główna</a></li>
           <li><a href="#">Twój Profil</a></li>
           <li><a className="active" id="search"><SearchBar /></a></li>
-          <li><a className="active" href="#">Wyloguj</a></li>
+          <li><a href="#">Wyloguj</a></li>
         </ul>
       </div>
     );
