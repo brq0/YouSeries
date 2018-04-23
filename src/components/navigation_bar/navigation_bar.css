@@ -17,13 +17,8 @@ ul.header li a {
   display: inline-block;
 }
 
-<<<<<<< HEAD
-ul.header li a:hover:not(.active) {
-  background-color: #5b5757;
-=======
 ul.header li a:hover {
   color: #5b5757;
->>>>>>> adb27e08a9edb2c134c0ed1289c74c94311a8ca5
 }
 
 #search{

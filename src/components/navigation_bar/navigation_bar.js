@@ -11,13 +11,8 @@ class NavigationBar extends Component{
     return(
       <div>
         <ul className="header">
-<<<<<<< HEAD
           <li><a className="active" id="logo">YouSeries</a></li>
-          <li><a href="#">Stronga Główna</a></li>
-=======
-          <li><a id="logo">YouSeries</a></li>
           <li><a href="#">Strona Główna</a></li>
->>>>>>> adb27e08a9edb2c134c0ed1289c74c94311a8ca5
           <li><a href="#">Twój Profil</a></li>
           <li><a className="active" id="search"><SearchBar /></a></li>
           <li><a href="#">Wyloguj</a></li>
