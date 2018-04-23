@@ -7,7 +7,8 @@ class GenresMenu extends Component {
 
   render() {
     return (
-      <div>menu
+      <div>
+        menu
       </div>
     )
   }
