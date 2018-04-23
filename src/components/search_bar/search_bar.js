@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Suggestions from './Suggestions'
-import './search_barcss.css';
+import './search_bar.css';
 
-const { API_KEY } = 'f32b6b18b2054226bbfb00dfeda586c7'
+const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/search/tv'
 
 class SearchBar extends Component {
@@ -13,7 +13,7 @@ class SearchBar extends Component {
   }
 
   getInfo = () => {
-    axios.get(`${API_URL}?api_key=f32b6b18b2054226bbfb00dfeda586c7&query=${this.state.query}&limit=7`)
+    axios.get(`${API_URL}?api_key=${API_KEY}&query=${this.state.query}&limit=7`)
       .then(({ data }) => {
 		  console.log(data['results']);
         this.setState({
@@ -56,7 +56,6 @@ class SearchBar extends Component {
 
   render() {
     return (
-      // <div onBlur={this.onBlur}>
       <div className="searchContainer" onBlur={this.onBlur}>
         <input className="searchInput"
           placeholder="Search for..."
