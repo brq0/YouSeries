@@ -16,7 +16,8 @@ class NavigationBar extends Component{
           <li><a href="#">Twój Profil</a></li>
           <li><a className="active" id="search"><SearchBar /></a></li>
           <li><a className="active" href="#">Wyloguj</a></li>
-
+          <li><a><SearchBar /></a></li>
+          <li><a href="#">Wyloguj</a></li>
         </ul>
       </div>
     );
