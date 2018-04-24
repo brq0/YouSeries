@@ -10,7 +10,11 @@
   font-family: Helvetica, sans-serif;
   font-weight: 300;
   font-size: 16px;
-  border: 1px solid #aaa;
+  color: #fff;
+  background-color: #1d1d1d;
+  border: 1px solid #cc0411;
+  /* border-left: 1px solid #cc0411;
+  border-right: 1px solid #cc0411; */
   border-radius: 4px;
 }
 
@@ -30,9 +34,11 @@
 .suggestionContainer--open {
   display: block;
   position: absolute;
-  top: 41px;
+  top: 40px;
   width: 400px;
-  border: 1px solid #aaa;
+  border-left: 1px solid #cc0411;
+  border-right: 1px solid #cc0411;
+  border-bottom: 1px solid #cc0411;
   background-color: #fff;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
@@ -53,7 +59,7 @@
 .suggestion {
   cursor: pointer;
   padding: 10px 20px;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid #cc0411;
 }
 
 .suggestion:hover {
