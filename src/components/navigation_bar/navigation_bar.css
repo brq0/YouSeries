@@ -19,6 +19,7 @@ ul.header li a {
   color: #FFF;
   text-decoration: none;
   padding: 20px;
+  margin-top: 25px;
   display: inline-block;
 }
 
@@ -47,7 +48,7 @@ ul.header li a:hover {
 
    /* width: 50%; */
    display: inline-block;
-   margin: 0 auto;
+   margin-top: 15px;
    font-size: 24px;
    font-weight: bold;
    color: #cc0411;
