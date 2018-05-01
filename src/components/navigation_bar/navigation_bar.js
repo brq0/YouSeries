@@ -24,7 +24,7 @@ class NavigationBar extends Component{
         <div>
           <div style={{borderBottom: "2px solid #cc0411"}}>
             <ul className="header">
-              <li><a className="active" id="logo">YouSeries</a></li>
+              <li><a className="active" id="logo"></a></li>
               <li><NavLink to="/">Strona Główna</NavLink></li>
               <li><NavLink to="/profile">Twój Profil</NavLink></li>
               <li><a className="active" id="search"><SearchBar /></a></li>

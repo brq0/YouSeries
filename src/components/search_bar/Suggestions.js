@@ -1,10 +1,13 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import './search_bar.css';
+import SeriesItemDetails from '../series/SeriesItemDetails';
 
 
 function processSelection(seriesId) {
-    // console.log(seriesId)
-    alert(seriesId)
+    console.log(seriesId)
+    // alert(seriesId)
+    ReactDOM.render(<SeriesItemDetails seriesId={seriesId} />, document.getElementById('container'));
 }
 
 function onBlur() {
