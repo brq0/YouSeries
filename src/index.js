@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import GenresMenu from './components/genres_menu/genres_menu';
+import Container from './components/content/container';
 import NavigationBar from './components/navigation_bar/navigation_bar';
 import './clear.css';
 
@@ -12,7 +13,7 @@ const App = () => {
   return (
     <div>
       <NavigationBar />
-      <GenresMenu />
+      <Container />
     </div>
   );
 }

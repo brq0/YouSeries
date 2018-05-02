@@ -10,76 +10,26 @@ const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/genre/tv/list'
 const QUERY = API_URL+'?api_key='+API_KEY;
 
-// const MovieDb = require('moviedb-promise')
-// const moviedb = new MovieDb(API_KEY);
 
-let genres = [];
-
-window.onload = function() {
-      console.log('load')
+function onGenreClick(id, props){
+  props.pickGenre(id)
 }
 
-// function onGenreClick(id){
-//   alert(id);
-//
-//   ReactDOM.render(<SeriesOfAGenre genreId={id} />, document.getElementById('container'));
-// }
-
-class GenresMenu extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      genres: [],
-    };
-  }
-
-  onGenreClick(id){
-    // alert(id);
-    var query = 'https://api.themoviedb.org/3/discover/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&sort_by=popularity.desc&with_genres='
-              + id;
-
-    axios.get(query)
-      .then(({ data }) => {
-        this.setState({
-          results: data['results']
-        })
-      })
-
-  }
-  componentDidMount() {
-    axios.get(`${QUERY}`)
-      .then(({ data }) => {
-        this.setState({
-          genres: data['genres']
-        })
-      })
-  }
-
-  render() {
-    const genres = this.state.genres;
+const GenresMenu = (props) => {
+  if(props.genres.length > 1){
+    const genres = props.genres;
     const genresMenu = (<div className="genresContainer">
-      {genres.map(genre =>
-        <div key={genre.id} className="genre">
-          <p onClick={()=>this.onGenreClick(genre.id)}>{genre.name}</p>
-        </div>
-      )}
-    </div>)
-
-    if(this.state.results){
-      const opt = <SeriesGenerator results={this.state.results}  style={{float:'left'}}/>
-      return (<div style={{width:'100%'}}>
-              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-              <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-            </div>)
-    }
-
-
-    return (
-      <div style={{width:'15%'}}>{genresMenu}</div>
-    );
+          {genres.map(genre =>
+            <div key={genre.id} className="genre">
+              <p onClick={()=>onGenreClick(genre.id, props)}>{genre.name}</p>
+            </div>
+          )}
+        </div>)
+    return genresMenu;
   }
 
+  return <div></div>
 }
+
+
 export default GenresMenu;
