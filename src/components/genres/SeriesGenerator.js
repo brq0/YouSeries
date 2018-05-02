@@ -10,26 +10,25 @@ import ReactDOM from 'react-dom';
 
 
 const SeriesGenerator = (props) => {
-  console.log(props)
+  console.log("ABC", props)
   let options = props.results.map(r => (
   // onMOUSE DOWN ZAMIAST ONCLICK w suggestion nie wiem dlaczego
-  r.poster_path !== null ?
-  <li className='list-group-item' style={{float:'left'}} key={r.id}>
+  // r.poster_path !== null ?
+  <li className='list-group-item' style={{display:'inline-block', marginTop:'10px'}} key={r.id}>
     <div className='video-list media'>
-    <div className='media-left' style={{float:'left'}}>
+    <div className='media-left'>
       <img className='media-object' src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`} alt="" style={{width:'75%'}}/>
 	  </div>
     </div>
   </li>
-  : <span>elo</span>
+  // : <span>elo</span>
 
   ))
 
 
 
 
-  return <div style={{ overflow: 'hidden',
-     whiteSpace: 'nowrap'}}>
+  return <div>
           <div>{options.filter(e=> e !== null)}</div>
         </div>
 }

@@ -69,15 +69,15 @@ class GenresMenu extends Component {
 
     if(this.state.results){
       const opt = <SeriesGenerator results={this.state.results}  style={{float:'left'}}/>
-      return (<div>
-              <div style={{width:'150px', float:'left',display:'inline-block'}}>{genresMenu}</div>
-              <div style={{float:'left' ,display:'inline-block'}}>{opt}</div>
+      return (<div style={{width:'100%'}}>
+              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+              <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
             </div>)
     }
 
 
     return (
-      <div style={{width:'150px'}}>{genresMenu}</div>
+      <div style={{width:'15%'}}>{genresMenu}</div>
     );
   }
 

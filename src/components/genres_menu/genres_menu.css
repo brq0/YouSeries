@@ -1,11 +1,10 @@
 .genresContainer{
   width: 150px;
-  background-color: red;
   height: 100%;
   font-family: Helvetica, sans-serif;
   color: #fff;
   font-size: 13px;
-  background-color: #141414
+  /* background-color: #141414 */
  }
 
 .genre{
