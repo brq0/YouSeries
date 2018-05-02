@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import './navigation_bar.css';
 import '../search_bar/search_bar.css';
 
+import * as routes from '../../constants/routes';
+import { Link } from 'react-router-dom';
+
 import SearchBar from '../search_bar/search_bar';
 import MainContent from '../content/main_content';
 import ProfileContent from '../content/profile_content';

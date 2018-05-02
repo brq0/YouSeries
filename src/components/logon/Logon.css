@@ -3,13 +3,26 @@ body {
   height: 100%;
 }
 
+#logo {
+  background-image: url("../../images/logoys.png");
+  margin: 30px 15px;
+  width: 250px;
+  height: 46px;
+  /* display: inline-block; */
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.buttons {
+  padding-top: 20px;
+}
+
 .center {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+
   background-color: #111;
   color: #fff;
 }

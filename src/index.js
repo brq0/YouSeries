@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import {
+  BrowserRouter as Router,
+  Route,
+ } from 'react-router-dom';
 
 import GenresMenu from './components/genres_menu/genres_menu';
 import NavigationBar from './components/navigation_bar/navigation_bar';
-import Logon from './components/logon/Logon'
+import Logon from './components/logon/Logon';
+
+import * as routes from './constants/routes';
 
 import './clear.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,12 +21,23 @@ let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
 const App = () => {
   return (
-    <div>
-      <div className="text-center">
-        <Logon />
-      </div>
+    <Router>
+      <div>
 
-    </div>
+        <Route
+          exact path="/"
+          component={Logon}
+        />
+
+
+        <Route
+          exact path={routes.SIGN_IN}
+          component={() =>
+            <NavigationBar />
+          }
+        />
+      </div>
+    </Router>
   );
 }
 
