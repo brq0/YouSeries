@@ -40,7 +40,7 @@ ul.header li a:hover {
 }
 
 #logo {
-   background-image: url("./logoys.png");
+   background-image: url("../../images/logoys.png");
    width: 120px;
    /* display: inline-block; */
    background-position: 50% 50%;
