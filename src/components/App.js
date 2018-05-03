@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import {
@@ -13,17 +13,59 @@ import NavigationBar from './navigation_bar/navigation_bar';
 import LandingPage from './content/Landing';
 import SignUpPage from './logon/SignUp';
 import SignInPage from './logon/SignIn';
+import SignOut from './logon/SignOut';
 
 import * as routes from '../constants/routes';
+import { firebase } from './firebase';
 
 
 const TMDB_API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7';
 let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
-const App = () =>
-  <div>
-    <NavigationBar />
-    <MainContent />
-  </div>
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null,
+    };
+  }
+
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState(() => ({ authUser }))
+        : this.setState(() => ({ authUser: null }));
+    });
+}
+
+  render() {
+    return (
+      <Router>
+
+        <div>
+
+          <Route
+            exact path={routes.LANDING}
+            component={() => <SignInPage />}
+          />
+          <Route
+            exact path={routes.SIGN_UP}
+            component={() => <SignUpPage />}
+          />
+          <Route
+            exact path={routes.SIGN_IN}
+            component={() => <SignInPage />}
+          />
+          <Route
+            exact path={routes.HOME}
+            component={() => <MainContent authUser="this.state.authUser" />}
+          />
+
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;

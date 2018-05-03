@@ -15,10 +15,14 @@ const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/genre/tv/list'
 const QUERY = API_URL+'?api_key='+API_KEY;
 
-const MainContent = () =>
+const MainContent = ({authUser}) =>
   <div>
-    <NavigationBar />
-    <Container />
+    {
+      authUser?
+        <div><NavigationBar /> <Container /></div>:
+        <SignInPage />
+    }
+
   </div>
 
 
@@ -81,4 +85,4 @@ class Container extends Component{
 
 }
 
-export default Container;
+export default MainContent;
