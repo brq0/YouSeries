@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
-import SeriesGenerator from '../genres/SeriesGenerator'
-import SeriesOfAGenre from '../genres/SeriesG'
-import GenresMenu from '../genres_menu/genres_menu'
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
+import NavigationBar from '../navigation_bar/navigation_bar';
+import SignInPage from '../logon/SignIn';
+
+import SeriesGenerator from '../genres/SeriesGenerator';
+import SeriesOfAGenre from '../genres/SeriesG';
+import GenresMenu from '../genres_menu/genres_menu';
+
 
 const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/genre/tv/list'
 const QUERY = API_URL+'?api_key='+API_KEY;
+
+const MainContent = () =>
+  <div>
+    <NavigationBar />
+    <Container />
+  </div>
+
+
+
 
 class Container extends Component{
   constructor(props) {

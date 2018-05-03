@@ -7,8 +7,7 @@ import * as routes from '../../constants/routes';
 import { Link } from 'react-router-dom';
 
 import SearchBar from '../search_bar/search_bar';
-import MainContent from '../content/main_content';
-import ProfileContent from '../content/profile_content';
+
 
 const TMDB_API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7';
 let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
