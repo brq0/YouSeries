@@ -10,8 +10,8 @@ ul.header li {
   padding: 0;
 }
 ul.header {
-  font-family: Helvetica, sans-serif;
-  font-size: 15px;
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-size: 17px;
   background-color: #141414;
   padding: 0;
 }
@@ -45,6 +45,7 @@ ul.header li a:hover {
    /* display: inline-block; */
    background-position: 50% 50%;
    background-repeat: no-repeat;
+
 
    /* width: 50%; */
    display: inline-block;

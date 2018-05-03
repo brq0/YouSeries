@@ -23,6 +23,8 @@ class NavigationBar extends Component{
       <HashRouter>
         <div>
           <div style={{borderBottom: "2px solid #cc0411"}}>
+
+
             <ul className="header">
               <li><a className="active" id="logo"></a></li>
               <li><NavLink to="/">Strona Główna</NavLink></li>

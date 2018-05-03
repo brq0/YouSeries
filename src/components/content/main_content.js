@@ -5,7 +5,6 @@ class MainContent extends Component{
   render(){
     return(
       <div>
-        <a> LISTA FILMÓW </a>
       </div>
     );
   }
