@@ -6,6 +6,7 @@ import {
  } from 'react-router-dom';
 
 import GenresMenu from './components/genres_menu/genres_menu';
+import Container from './components/content/container';
 import NavigationBar from './components/navigation_bar/navigation_bar';
 import Logon from './components/logon/Logon';
 
@@ -21,23 +22,7 @@ let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
 const App = () => {
   return (
-    <Router>
-      <div>
 
-        <Route
-          exact path="/"
-          component={Logon}
-        />
-
-
-        <Route
-          exact path={routes.SIGN_IN}
-          component={() =>
-            <NavigationBar />
-          }
-        />
-      </div>
-    </Router>
   );
 }
 
