@@ -37,33 +37,18 @@ class App extends Component {
         ? this.setState(() => ({ authUser }))
         : this.setState(() => ({ authUser: null }));
     });
+
+
 }
 
   render() {
     return (
-      <Router>
+      <div>
+        {this.state.authUser ? <MainContent /> : <SignInPage />}
+      </div>
 
-        <div>
 
-          <Route
-            exact path={routes.LANDING}
-            component={() => <SignInPage />}
-          />
-          <Route
-            exact path={routes.SIGN_UP}
-            component={() => <SignUpPage />}
-          />
-          <Route
-            exact path={routes.SIGN_IN}
-            component={() => <SignInPage />}
-          />
-          <Route
-            exact path={routes.HOME}
-            component={() => <MainContent authUser="this.state.authUser" />}
-          />
 
-        </div>
-      </Router>
     );
   }
 }

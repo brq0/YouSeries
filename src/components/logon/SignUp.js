@@ -137,11 +137,11 @@ const SignUpLink = () =>
   <p>
     Don't have an account?
     {' '}
-    <Link to={routes.SIGN_UP}>Sign Up</Link>
+    SignIn
   </p>
 
 
-export default withRouter(SignUpPage);
+export default SignUpPage;
 
 export {
   SignUpForm,
