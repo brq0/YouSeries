@@ -5,8 +5,6 @@ import { SignUpLink } from './SignUp';
 import * as routes from '../../constants/routes';
 import { auth } from '../firebase/';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import './Logon.css';
 
 const SignInPage = ({ history }) =>

@@ -7,8 +7,6 @@ import {
 import { auth } from '../firebase/';
 import * as routes from '../../constants/routes';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import './Logon.css';
 
 const SignUpPage = ({ history }) =>

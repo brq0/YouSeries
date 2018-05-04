@@ -23,9 +23,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+.list-group-item{
+	background-color: #111;
+	border:1px solid transparent;
+}
 body {
 	line-height: 1;
+	font-family: 'Raleway', Helvetica, sans-serif;
 }
+
 ol, ul {
 	list-style: none;
 }
