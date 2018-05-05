@@ -49,3 +49,15 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.logoutButton{
+  padding: 0;
+  border: none;
+  background: none;
+  color:#d7d7d7;
+  margin: 0 auto;
+  cursor:pointer
+}
+.logoutButton:hover{
+  color:red;
+}

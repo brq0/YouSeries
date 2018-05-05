@@ -9,22 +9,20 @@
   flex-grow: 0;
 }
 .nav-item{
+  cursor:pointer;
   margin-top:14px;
   margin-right:10px;
 }
+
 
 .navbar-dark .navbar-nav .nav-link{
   color:#d7d7d7;
 }
 
+
 .nav-item:nth-child(3){
   margin-top:3px;
 }
-.logoutBtn{
-  /* position: absolute;
-  right: 0; */
-}
-
 
 #search{
   color: #111;

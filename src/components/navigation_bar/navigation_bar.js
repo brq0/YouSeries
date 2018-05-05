@@ -63,7 +63,7 @@ let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
                            <NavItem><NavLink>Strong Głowna</NavLink></NavItem>
                            <NavItem><NavLink>Twój profil</NavLink></NavItem>
                            <NavItem><NavLink><a className="active" id="search"><SearchBar /></a></NavLink></NavItem>
-                           <NavItem> <NavLink>Wyloguj</NavLink></NavItem>
+                           <NavItem><NavLink><SignOut /></NavLink></NavItem>
                        </Nav>
 
                      </Collapse>
