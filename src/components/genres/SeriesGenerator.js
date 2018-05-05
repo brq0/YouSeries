@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import './series_of_a_genre.css';
 
-function onSeriesClick(id){
-  alert(id)
+function onSeriesClick(id, props){
+  // alert(id)
+  props.pickShow(id)
 }
 
 const SeriesGenerator = (props) => {
-  console.log("ABC", props)
   let options = props.results.filter(r=> r.poster_path).map(r => (
 
   <li className='list-group-item' style={{display:'inline-block', marginTop:'10px'}} key={r.id}>
@@ -15,7 +15,7 @@ const SeriesGenerator = (props) => {
     <div className='media-left'>
       <img className='media-object' id="seriesItem"
        src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
-        alt="" style={{width:'75%'}} onClick={()=>onSeriesClick(r.id)}/>
+        alt="" style={{width:'75%'}} onClick={()=>onSeriesClick(r.id, props)}/>
 	  </div>
     </div>
   </li>

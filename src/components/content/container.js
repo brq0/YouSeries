@@ -8,6 +8,7 @@ import SignInPage from '../logon/SignIn';
 
 import SeriesGenerator from '../genres/SeriesGenerator';
 import SeriesOfAGenre from '../genres/SeriesG';
+import SeriesItemDetails from '../series/SeriesItemDetails';
 import GenresMenu from '../genres_menu/genres_menu';
 
 
@@ -35,8 +36,8 @@ class Container extends Component{
     this.state = {
       genres: [],
       result: [],
-      // previousGenre: 0,
-      pickedGenre: 0
+      pickedShow: 0,
+      similarSeries: 0
     };
   }
 
@@ -49,11 +50,8 @@ class Container extends Component{
       })
   }
 
+  // wybranie gatunku
   onClickedGenre(id){
-    // this.setState({
-    //   previousGenre: this.state.pickedGenre,
-    //   pickedGenre: id
-    // })
     var query = 'https://api.themoviedb.org/3/discover/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&sort_by=popularity.desc&with_genres='
               + id;
 
@@ -65,22 +63,72 @@ class Container extends Component{
       })
   }
 
+  //usuniecie serialu wybranego
+  removePickedShow(){
+    this.setState({
+      pickedShow: 0,
+      similarSeries: 0
+    })
+  }
+
+  // wybranie serialu po wygenerowaniu serialow danego gatunku
+  pickShow(id){
+    var query = `https://api.themoviedb.org/3/tv/${id}?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US'`
+    var querySimilar = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&page=1`
+
+    axios.get(query)
+      .then(({ data }) => {
+        this.setState({
+          pickedShow: data,
+          result: []
+        })
+      })
+
+    axios.get(querySimilar)
+        .then(({ data }) => {
+          this.setState({
+            similarSeries: data
+          })
+    })
+
+  }
+
   render(){
     const genresMenu = <GenresMenu
                           genres={this.state.genres}
-                          pickedGenre={this.state.pickedGenre}
-                          pickGenre={this.onClickedGenre.bind(this)}/>
-    // if(this.state.pickedGenre != this.state.previousGenre){
+                          pickGenre={this.onClickedGenre.bind(this)}
+                          removeShow={this.removePickedShow.bind(this)}/>
 
-    if(this.state.results){
-      const opt = <SeriesGenerator results={this.state.results}  style={{float:'left'}}/>
+    if(this.state.results && this.state.pickedShow == 0){
+      // wybrano gatunek seriali do wyswietlenia
+      const opt = <SeriesGenerator results={this.state.results}
+                                  pickShow={this.pickShow.bind(this)}
+                                  style={{float:'left'}}/>
+
+          return (<div style={{width:'100%'}}>
+                  <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+                  <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+                </div>)
+    }else if(this.state.pickedShow !== 0 && this.state.results !== undefined){
+      // wybrano serial do wyswietlenia
+
+      const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
+                                  similarSeries={this.state.similarSeries}
+                                  pickShow={this.pickShow.bind(this)}
+                                  style={{float:'left'}}/>
+
       return (<div style={{width:'100%'}}>
               <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
               <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
             </div>)
+
+    }else if(this.state.results === undefined){
+      // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
+
+      return <div style={{width:'15%'}}>{genresMenu}</div>
     }
 
-    return <div style={{width:'15%'}}>{genresMenu}</div>
+
   }
 
 }

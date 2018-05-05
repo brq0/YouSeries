@@ -13,6 +13,8 @@ const QUERY = API_URL+'?api_key='+API_KEY;
 
 function onGenreClick(id, props){
   props.pickGenre(id)
+
+  props.removeShow()
 }
 
 const GenresMenu = (props) => {

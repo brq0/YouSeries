@@ -30,8 +30,12 @@ import SignOut from '../logon/SignOut'
 const TMDB_API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7';
 let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
+function refreshPage(){
+  window.location.reload();
 
-  class NavigationBar extends React.Component {
+}
+
+class NavigationBar extends React.Component {
       constructor(props) {
         super(props);
 
@@ -55,14 +59,14 @@ let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
                   <Navbar color="dark" dark expand="md">
 
-                     <NavbarBrand><a className="active" id="logo"></a></NavbarBrand>
+                     <NavbarBrand className="active" id="logo"></NavbarBrand>
                      <NavbarToggler onClick={this.toggle} />
                      <Collapse isOpen={this.state.isOpen} navbar>
-
+                     
                        <Nav className="ml-auto" navbar>
-                           <NavItem><NavLink>Strong Głowna</NavLink></NavItem>
+                           <NavItem><NavLink onClick={refreshPage}>Strong Głowna</NavLink></NavItem>
                            <NavItem><NavLink>Twój profil</NavLink></NavItem>
-                           <NavItem><NavLink><a className="active" id="search"><SearchBar /></a></NavLink></NavItem>
+                           <NavItem><NavLink className="active" id="search"><SearchBar /></NavLink></NavItem>
                            <NavItem><NavLink><SignOut /></NavLink></NavItem>
                        </Nav>
 

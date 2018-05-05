@@ -5,9 +5,9 @@ import SeriesItemDetails from '../series/SeriesItemDetails';
 
 
 function processSelection(seriesId) {
-    console.log(seriesId)
-    // alert(seriesId)
-    ReactDOM.render(<SeriesItemDetails seriesId={seriesId} />, document.getElementById('container'));
+    // console.log(seriesId)
+    alert(seriesId)
+    // ReactDOM.render(<SeriesItemDetails seriesId={seriesId} />, document.getElementById('container'));
 }
 
 function onBlur() {
