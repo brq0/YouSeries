@@ -9,9 +9,9 @@ function onSeriesClick(id, props){
 
 const SeriesItemDetails = (props) =>{
   var show = props.pickedShow;
-  var similarSeries = props.similarSeries.results;
+  var similarSeries = props.similarSeries !== null ? props.similarSeries.results : null;
 
-  var year = show.first_air_date.substring(0,4);
+  var year = show.first_air_date !== null ? show.first_air_date.substring(0,4) : "";
   var genres = show.genres.map(e=><p key={e.id}>{e.name}</p>)
 
   const seriesDetails = (<div>
@@ -24,7 +24,7 @@ const SeriesItemDetails = (props) =>{
                               <div id="voteCount">Number of votes: {show['vote_count']}</div>
                               <div id="voteAverage">Average vote: {show['vote_average']}</div>
                           </div>)
-  if(similarSeries !== undefined){
+  if(similarSeries !== null && similarSeries['0'] !== undefined){
     return <div className="seriesItemDetails">
             {seriesDetails}
 

@@ -6,7 +6,15 @@ import './search_bar.css';
 const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/search/tv'
 
+let parentProps;
+
 class SearchBar extends Component {
+  constructor(props){
+    super(props)
+
+    parentProps = props;
+  }
+
   state = {
     query: '',
     results: []
@@ -15,7 +23,7 @@ class SearchBar extends Component {
   getInfo = () => {
     axios.get(`${API_URL}?api_key=${API_KEY}&query=${this.state.query}&limit=7`)
       .then(({ data }) => {
-		  console.log(data['results']);
+		  // console.log(data['results']);
         this.setState({
           results: data['results']
         })
@@ -27,7 +35,7 @@ class SearchBar extends Component {
   }
 
   onBlur = () => {
-    console.log("bl")
+
     document.getElementById("temp").style.display='none'
   }
 
@@ -38,7 +46,6 @@ class SearchBar extends Component {
   }
 
   handleInputChange = () => {
-	  // console.log(this.search.value.length>1);
     if(this.search.value.length>1){
       this.onFocus();
       this.setState({
@@ -65,7 +72,7 @@ class SearchBar extends Component {
           onFocus={this.onFocus}
         />
         <div id="temp">
-          <Suggestions results={this.state.results} />
+          <Suggestions results={this.state.results} pickShow={parentProps.pickShow} />
         </div>
       </div>
       // </div>

@@ -32,13 +32,15 @@ let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
 function refreshPage(){
   window.location.reload();
-
 }
+
+let parentProps;
 
 class NavigationBar extends React.Component {
       constructor(props) {
         super(props);
 
+        parentProps = props;
         this.toggle = this.toggle.bind(this);
         this.state = {
           isOpen: false
@@ -62,11 +64,11 @@ class NavigationBar extends React.Component {
                      <NavbarBrand className="active" id="logo"></NavbarBrand>
                      <NavbarToggler onClick={this.toggle} />
                      <Collapse isOpen={this.state.isOpen} navbar>
-                     
+
                        <Nav className="ml-auto" navbar>
                            <NavItem><NavLink onClick={refreshPage}>Strong Głowna</NavLink></NavItem>
                            <NavItem><NavLink>Twój profil</NavLink></NavItem>
-                           <NavItem><NavLink className="active" id="search"><SearchBar /></NavLink></NavItem>
+                           <NavItem><NavLink className="active" id="search"><SearchBar pickShow={parentProps.pickShow}/></NavLink></NavItem>
                            <NavItem><NavLink><SignOut /></NavLink></NavItem>
                        </Nav>
 

@@ -19,7 +19,6 @@ const QUERY = API_URL+'?api_key='+API_KEY;
 const MainContent = () =>
   <div>
 
-    <NavigationBar />
     <Container />
 
 
@@ -36,8 +35,8 @@ class Container extends Component{
     this.state = {
       genres: [],
       result: [],
-      pickedShow: 0,
-      similarSeries: 0
+      pickedShow: null,
+      similarSeries: null
     };
   }
 
@@ -66,13 +65,14 @@ class Container extends Component{
   //usuniecie serialu wybranego
   removePickedShow(){
     this.setState({
-      pickedShow: 0,
-      similarSeries: 0
+      pickedShow: null,
+      similarSeries: null
     })
   }
 
   // wybranie serialu po wygenerowaniu serialow danego gatunku
   pickShow(id){
+    console.log("pick", id)
     var query = `https://api.themoviedb.org/3/tv/${id}?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US'`
     var querySimilar = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&page=1`
 
@@ -99,17 +99,20 @@ class Container extends Component{
                           pickGenre={this.onClickedGenre.bind(this)}
                           removeShow={this.removePickedShow.bind(this)}/>
 
-    if(this.state.results && this.state.pickedShow == 0){
+    if(this.state.results && this.state.pickedShow == null){
       // wybrano gatunek seriali do wyswietlenia
       const opt = <SeriesGenerator results={this.state.results}
                                   pickShow={this.pickShow.bind(this)}
                                   style={{float:'left'}}/>
 
-          return (<div style={{width:'100%'}}>
-                  <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-                  <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-                </div>)
-    }else if(this.state.pickedShow !== 0 && this.state.results !== undefined){
+          return (<div>
+                    <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                    <div style={{width:'100%'}}>
+                      <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+                      <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+                    </div>
+                  </div>)
+    }else if(this.state.pickedShow !== null){
       // wybrano serial do wyswietlenia
 
       const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
@@ -117,15 +120,23 @@ class Container extends Component{
                                   pickShow={this.pickShow.bind(this)}
                                   style={{float:'left'}}/>
 
-      return (<div style={{width:'100%'}}>
-              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-              <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+      return (<div>
+                <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                <div style={{width:'100%'}}>
+                    <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+                    <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+                </div>
             </div>)
 
     }else if(this.state.results === undefined){
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
 
-      return <div style={{width:'15%'}}>{genresMenu}</div>
+      return  <div>
+                <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                <div style={{width:'100%'}}>
+                  <div style={{width:'15%'}}>{genresMenu}</div>
+                </div>
+              </div>
     }
 
 
