@@ -70,6 +70,16 @@ class Container extends Component{
     })
   }
 
+
+  //uzywany do powrotu do strony glownej
+  resetPage(){
+    this.setState({
+      results: [],
+      pickedShow: null,
+      similarSeries: null
+    })
+  }
+
   // wybranie serialu po wygenerowaniu serialow danego gatunku
   pickShow(id){
     console.log("pick", id)
@@ -106,7 +116,7 @@ class Container extends Component{
                                   style={{float:'left'}}/>
 
           return (<div>
-                    <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                    <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
                     <div style={{width:'100%'}}>
                       <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
                       <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
@@ -121,7 +131,7 @@ class Container extends Component{
                                   style={{float:'left'}}/>
 
       return (<div>
-                <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
                 <div style={{width:'100%'}}>
                     <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
                     <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
@@ -132,7 +142,7 @@ class Container extends Component{
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
 
       return  <div>
-                <NavigationBar pickShow={this.pickShow.bind(this)}/>
+                <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
                 <div style={{width:'100%'}}>
                   <div style={{width:'15%'}}>{genresMenu}</div>
                 </div>

@@ -30,8 +30,8 @@ import SignOut from '../logon/SignOut'
 const TMDB_API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7';
 let Query = "https://api.themoviedb.org/3/genre/tv/list?api_key="+TMDB_API_KEY;
 
-function refreshPage(){
-  window.location.reload();
+function refreshPage(props){
+  props.resetPage();
 }
 
 let parentProps;
@@ -66,7 +66,7 @@ class NavigationBar extends React.Component {
                      <Collapse isOpen={this.state.isOpen} navbar>
 
                        <Nav className="ml-auto" navbar>
-                           <NavItem><NavLink onClick={refreshPage}>Strong Głowna</NavLink></NavItem>
+                           <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Strong Głowna</NavLink></NavItem>
                            <NavItem><NavLink>Twój profil</NavLink></NavItem>
                            <NavItem><NavLink className="active" id="search"><SearchBar pickShow={parentProps.pickShow}/></NavLink></NavItem>
                            <NavItem><NavLink><SignOut /></NavLink></NavItem>
