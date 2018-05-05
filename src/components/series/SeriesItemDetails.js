@@ -37,57 +37,65 @@ const SeriesItemDetails = (props) =>{
                           </div>)
 
   if(similarSeries !== null && similarSeries['0'] !== undefined){
-    // w tym divie similarSeries slider dla wszystkich z vara similarseries wyswietlane jakos po 4/5 czy cos
-
-
       let buttonSetting = {
-          placeOn: "middle-outside",
+          placeOn: "middle-inside",
+          hoverEvent: true,
           style: {
             left: {
-                  color: "red",
-                  background: "transparent",
-                  border: "1px solid red",
-                  borderRadius: "50%",
+                  height: "50px",
+                  width: "50px",
+                  color: "#929393",
+                  background: "rgba(225, 228, 232, 0.8)",
+                  borderRadius: "50%"
                   },
             right: {
-                  color: "red",
-                  background: "transparent",
-                  border: "1px solid red",
+                  height: "50px",
+                  width: "50px",
+                  color: "#929393",
+                  background: "rgba(225, 228, 232, 0.8)",
                   borderRadius: "50%"
                   }
           }
       };
+
       let sliderBoxStyle = {
-        height: "30%",
-        width: "90%",
+        height: "20%",
+        width: "95%",
         background: "transparent",
-        border: "1px solid #e1e4e8"
       };
+
+      let itemsStyle = {
+          height: "60%",
+          background: "transparent",
+          border: "1px solid #e1e4e8",
+          borderRadius: "2px"
+      };
+
       let customSlideCpnts = similarSeries.map(e => (
         <div>
           <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
-              style={{cursor: 'pointer'}}
+              className="seriesImg"
               alt="" onClick={()=>onSeriesClick(e.id, props)}/>
         </div>
       ));
 
     return <div className="seriesItemDetails">
-            {seriesDetails}
+              {seriesDetails}
 
-            <br/>
-            <p id="similarSeriesLabel">Similar series:</p>
-            <div id="similarSeries">
-              <div style={{ width: "100%", margin: "0 auto", position: "relative" }}>
-                <CarouselSlider
-                  sliderBoxStyle = {{background: "transparent"}}
-                  accEle = {{dots: false}}
-                  manner={{ circular: true }}
-                  slideCpnts = {customSlideCpnts}
-                  sliderBoxStyle={sliderBoxStyle}
-                  buttonSetting={buttonSetting}
-                />
+              <br/>
+              <p id="similarSeriesLabel">Similar series:</p>
+              <div id="similarSeries">
+                  <div style={{ width: "100%", margin: "0 auto", position: "relative" }}>
+                    <CarouselSlider key={similarSeries['0'].id}
+                      accEle = {{dots: false}}
+                      manner={{ circular: true }}
+                      slideCpnts = {customSlideCpnts}
+                      sliderBoxStyle={sliderBoxStyle}
+                      buttonSetting={buttonSetting}
+                      itemsStyle = {itemsStyle}
+                    />
+                 </div>
              </div>
-           </div>
            </div>
   }else{
     return <div className="seriesItemDetails">

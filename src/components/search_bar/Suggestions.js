@@ -21,11 +21,11 @@ const Suggestions = (props) => {
   const options = props.results.map(r => (
   // onMOUSE DOWN ZAMIAST ONCLICK w suggestion nie wiem dlaczego
   r.poster_path !== null ?
-    <div className="suggestion" key={r.id} style={{height:'80px'}}
+    <div className="suggestion" key={r.id} style={{height:'100px'}}
       onMouseDown={()=>processSelection(r.id, props)}>
       <span style={{float:'left'}}>{r.name} ({getYear(`${r.first_air_date}`)})</span>
       <img src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`} alt=""
-        style={{width:'50px', height:'80px', position:'absolute', right:'5px'}}/>
+        style={{width:'60px', height:'80px', position:'absolute', right:'5px'}}/>
 	  </div>
   : <span key={r.id}></span>
 
