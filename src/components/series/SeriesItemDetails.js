@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './series_items_style.css';
 import ReactCountryFlag from 'react-country-flag';
+import CarouselSlider from "react-carousel-slider";
 
 
 function onSeriesClick(id, props){
@@ -37,21 +38,56 @@ const SeriesItemDetails = (props) =>{
 
   if(similarSeries !== null && similarSeries['0'] !== undefined){
     // w tym divie similarSeries slider dla wszystkich z vara similarseries wyswietlane jakos po 4/5 czy cos
+
+
+      let buttonSetting = {
+          placeOn: "middle-outside",
+          style: {
+            left: {
+                  color: "red",
+                  background: "transparent",
+                  border: "1px solid red",
+                  borderRadius: "50%",
+                  },
+            right: {
+                  color: "red",
+                  background: "transparent",
+                  border: "1px solid red",
+                  borderRadius: "50%"
+                  }
+          }
+      };
+      let sliderBoxStyle = {
+        height: "30%",
+        width: "90%",
+        background: "transparent",
+        border: "1px solid #e1e4e8"
+      };
+      let customSlideCpnts = similarSeries.map(e => (
+        <div>
+          <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
+              style={{cursor: 'pointer'}}
+              alt="" onClick={()=>onSeriesClick(e.id, props)}/>
+        </div>
+      ));
+
     return <div className="seriesItemDetails">
             {seriesDetails}
 
             <br/>
             <p id="similarSeriesLabel">Similar series:</p>
             <div id="similarSeries">
-
-
-              <img src={`http://image.tmdb.org/t/p/w185/${similarSeries['0'].poster_path}`}
-                    style={{cursor:'pointer'}}
-                    alt="" onClick={()=>onSeriesClick(similarSeries['0'].id, props)}/>
-              </div>
-
-
-
+              <div style={{ width: "100%", margin: "0 auto", position: "relative" }}>
+                <CarouselSlider
+                  sliderBoxStyle = {{background: "transparent"}}
+                  accEle = {{dots: false}}
+                  manner={{ circular: true }}
+                  slideCpnts = {customSlideCpnts}
+                  sliderBoxStyle={sliderBoxStyle}
+                  buttonSetting={buttonSetting}
+                />
+             </div>
+           </div>
            </div>
   }else{
     return <div className="seriesItemDetails">
