@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './clear.css';
 
 import App from './components/App';
 

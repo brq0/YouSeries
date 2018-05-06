@@ -10,23 +10,21 @@ function onSeriesClick(id, props){
 const SeriesGenerator = (props) => {
   let options = props.results.filter(r=> r.poster_path).map(r => (
 
-  <li className='list-group-item' style={{display:'inline-block', marginTop:'10px'}} key={r.id}>
-    <div className='video-list media'>
-    <div className='media-left'>
-      <img className='media-object' id="seriesItem"
-       src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
-        alt="" style={{width:'75%'}} onClick={()=>onSeriesClick(r.id, props)}/>
-	  </div>
-    </div>
-  </li>
+  <div className="col-md-3 my-3" key={r.id}>
+	  <img className='media-object' id="seriesItem"
+	   src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
+		alt="" style={{width:'75%'}} onClick={()=>onSeriesClick(r.id, props)}/>
+  </div>
 
   ))
 
 
 
 
-  return <div>
-          <div>{options.filter(e=> e !== null)}</div>
+  return <div className="container">
+		  <div className="row">
+			{options.filter(e=> e !== null)}
+		  </div>
         </div>
 }
 

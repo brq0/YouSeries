@@ -21,20 +21,28 @@ const SeriesItemDetails = (props) =>{
   var productionCountries = show.origin_country.map(e=>
                             <div key={e}>
                               <ReactCountryFlag style={{display:'inline'}} code={e} svg/>
-                              <p style={{display:'inline', marginLeft:'5px', marginRight:'5px'}}>{countries.getName(e, "en")}</p>
+                              <p>{countries.getName(e, "en")}</p>
                             </div>);
 
-  const seriesDetails = (<div>
+  const seriesDetails = (<div class="container"> 
+							<div class="row my-3">
+  						  	  <div class="col-md-3">
+							  <div class="mx-3">
+								<img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" />
+							  </div>
+							  </div>
+						  <div class="col-md-9">
                               <div id="seriesName">{show['name']}</div>
                               <div id="yearOfSeries">Year: {year}</div>
                               <div id="seriesOverview">Overview: {show['overview']}</div>
-                              <div id="seasonsAmount">Seasons: {show['seasons'].length}</div>
-                              <img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" />
                               <div id="seriesGenres">Genres: {genres}</div>
                               <div id="seriesProductionCountries">Country: {productionCountries} </div>
+							  <div id="seasonsAmount">Seasons: {show['seasons'].length}</div>
                               <div id="voteCount">Number of votes: {show['vote_count']}</div>
                               <div id="voteAverage">Average vote: {show['vote_average']}</div>
-                          </div>)
+                          </div>
+						 </div>	
+						</div>)
 
   if(similarSeries !== null && similarSeries['0'] !== undefined){
       let buttonSetting = {

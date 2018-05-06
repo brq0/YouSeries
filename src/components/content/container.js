@@ -127,16 +127,18 @@ class Container extends Component{
       // wybrano gatunek seriali do wyswietlenia
       const opt = <SeriesGenerator results={this.state.results}
                                   pickShow={this.pickShow.bind(this)}
-                                  style={{float:'left'}}/>
+                                 />
 
           return (<div>
                     <NavigationBar pickShow={this.pickShow.bind(this)}
                                   resetPage={this.resetPage.bind(this)}
                                   searchSeries={this.searchSeries.bind(this)}/>
-                    <div style={{width:'100%'}}>
-                      <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-                      <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-                    </div>
+                    <div className="container">
+						<div className="row">
+							<div className="col-md-2">{genresMenu}</div>
+							<div className="col-md-10">{opt}</div>
+						</div>
+					</div>
                   </div>)
     }else if(this.state.pickedShow !== null){
       // wybrano serial do wyswietlenia
@@ -144,17 +146,19 @@ class Container extends Component{
       const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
                                   similarSeries={this.state.similarSeries}
                                   pickShow={this.pickShow.bind(this)}
-                                  style={{float:'left'}}/>
+                                  />
 
       return (<div>
                 <NavigationBar pickShow={this.pickShow.bind(this)}
                       resetPage={this.resetPage.bind(this)}
                       searchSeries={this.searchSeries.bind(this)}/>
-                <div style={{width:'100%'}}>
-                    <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-                    <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-                </div>
-            </div>)
+				<div className="container">
+					<div className="row">
+						<div className="col-md-2">{genresMenu}</div>
+						<div className="col-md-10">{opt}</div>
+					</div>
+				</div>
+            </div> )
 
     }else if(this.state.results === undefined){
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
@@ -163,9 +167,12 @@ class Container extends Component{
               <NavigationBar pickShow={this.pickShow.bind(this)}
                     resetPage={this.resetPage.bind(this)}
                     searchSeries={this.searchSeries.bind(this)}/>
-                <div style={{width:'100%'}}>
-                  <div style={{width:'15%'}}>{genresMenu}</div>
-                </div>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-2">{genresMenu}</div>
+						<div className="col-md-10"></div>
+					</div>
+				</div>
               </div>
     }
 
