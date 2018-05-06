@@ -17,24 +17,32 @@ const SeriesItemDetails = (props) =>{
   var similarSeries = props.similarSeries !== null ? props.similarSeries.results : null;
 
   var year = show.first_air_date !== null ? show.first_air_date.substring(0,4) : "";
-  var genres = show.genres.map(e=><p key={e.id}>{e.name}</p>);
+  var genres = show.genres.map(e=><span class="genresDisplay" key={e.id}>{e.name}</span>);
   var productionCountries = show.origin_country.map(e=>
                             <div key={e}>
                               <ReactCountryFlag style={{display:'inline'}} code={e} svg/>
-                              <p style={{display:'inline', marginLeft:'5px', marginRight:'5px'}}>{countries.getName(e, "en")}</p>
+                              <span style={{paddingLeft: '3px'}}>{countries.getName(e, "en")}</span>
                             </div>);
 
-  const seriesDetails = (<div>
-                              <div id="seriesName">{show['name']}</div>
-                              <div id="yearOfSeries">Year: {year}</div>
-                              <div id="seriesOverview">Overview: {show['overview']}</div>
-                              <div id="seasonsAmount">Seasons: {show['seasons'].length}</div>
-                              <img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" />
-                              <div id="seriesGenres">Genres: {genres}</div>
-                              <div id="seriesProductionCountries">Country: {productionCountries} </div>
-                              <div id="voteCount">Number of votes: {show['vote_count']}</div>
-                              <div id="voteAverage">Average vote: {show['vote_average']}</div>
-                          </div>)
+  const seriesDetails = (<div class="container pageLook"> 
+							<div class="row my-3">
+  						  	  <div class="col-md-3">
+							  <div class="mx-3">
+								<img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" /><br /><br />
+                              <h5><div id="voteCount">Votes: {show['vote_count']}</div></h5>
+                              <h5><div id="voteAverage">Score: {show['vote_average']}</div></h5>
+							  </div>
+							  </div>
+						  <div class="col-md-9 pageLook">
+                              <h1><div id="seriesName" class="font-weight-bold" >{show['name']}</div></h1>
+                              <h5><div id="yearOfSeries">Year: {year}</div></h5>
+							  <div id="seasonsAmount">Seasons: {show['seasons'].length}</div><br />
+                              <div id="seriesOverview"><h6>Overview: </h6>{show['overview']}</div><br />
+                              <div id="seriesGenres"><h6>Genres: </h6>{genres}</div><br />
+                              <div id="seriesProductionCountries"><h6>Country: </h6>{productionCountries} </div>
+                          </div>
+						 </div>	
+						</div>)
 
   if(similarSeries !== null && similarSeries['0'] !== undefined){
       let buttonSetting = {
