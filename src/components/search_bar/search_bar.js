@@ -41,7 +41,10 @@ class SearchBar extends Component {
 
   onKeyPressed = (e) => {
     if (e.key === 'Enter') {
-      console.log('do validate');
+      let val = document.getElementById("searchBar").value;
+      if(val.length >= 2){
+        parentProps.searchSeries(val);
+      }
     }
   }
 
@@ -64,7 +67,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="searchContainer" onBlur={this.onBlur}>
-        <input className="searchInput"
+        <input id="searchBar" className="searchInput"
           placeholder="Search for..."
           ref={input => this.search = input}
           onKeyPress={this.onKeyPressed}

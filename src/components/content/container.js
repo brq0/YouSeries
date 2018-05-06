@@ -57,7 +57,8 @@ class Container extends Component{
     axios.get(query)
       .then(({ data }) => {
         this.setState({
-          results: data['results']
+          results: data['results'],
+          pickedShow: null
         })
       })
   }
@@ -78,6 +79,19 @@ class Container extends Component{
       pickedShow: null,
       similarSeries: null
     })
+  }
+
+  //lub enter na searchbarze
+  searchSeries(val){
+    var query = `https://api.themoviedb.org/3/search/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&query=${val}&page=1`
+    console.log("CLICK")
+    axios.get(query)
+      .then(({ data }) => {
+        this.setState({
+          results: data['results'],
+          pickedShow: null
+        })
+      })
   }
 
   // wybranie serialu po wygenerowaniu serialow danego gatunku
@@ -116,7 +130,9 @@ class Container extends Component{
                                   style={{float:'left'}}/>
 
           return (<div>
-                    <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
+                    <NavigationBar pickShow={this.pickShow.bind(this)}
+                                  resetPage={this.resetPage.bind(this)}
+                                  searchSeries={this.searchSeries.bind(this)}/>
                     <div style={{width:'100%'}}>
                       <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
                       <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
@@ -131,7 +147,9 @@ class Container extends Component{
                                   style={{float:'left'}}/>
 
       return (<div>
-                <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
+                <NavigationBar pickShow={this.pickShow.bind(this)}
+                      resetPage={this.resetPage.bind(this)}
+                      searchSeries={this.searchSeries.bind(this)}/>
                 <div style={{width:'100%'}}>
                     <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
                     <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
@@ -142,7 +160,9 @@ class Container extends Component{
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
 
       return  <div>
-                <NavigationBar pickShow={this.pickShow.bind(this)} resetPage={this.resetPage.bind(this)}/>
+              <NavigationBar pickShow={this.pickShow.bind(this)}
+                    resetPage={this.resetPage.bind(this)}
+                    searchSeries={this.searchSeries.bind(this)}/>
                 <div style={{width:'100%'}}>
                   <div style={{width:'15%'}}>{genresMenu}</div>
                 </div>
