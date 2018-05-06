@@ -59,6 +59,7 @@
   cursor: pointer;
   padding: 10px 20px;
   border-bottom: 1px solid #cc0411;
+  height: 100px;
 }
 
 .suggestion:hover {
