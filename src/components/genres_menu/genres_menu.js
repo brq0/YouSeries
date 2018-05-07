@@ -11,8 +11,8 @@ const API_URL = 'https://api.themoviedb.org/3/genre/tv/list'
 const QUERY = API_URL+'?api_key='+API_KEY;
 
 
-function onGenreClick(id, props){
-  props.pickGenre(id)
+function onGenreClick(id, name, props){
+  props.pickGenre(id, name)
 
   props.removeShow()
 }
@@ -23,7 +23,7 @@ const GenresMenu = (props) => {
     const genresMenu = (<div className="genresContainer">
           {genres.map(genre =>
             <div key={genre.id} className="genre">
-              <p onClick={()=>onGenreClick(genre.id, props)}>{genre.name}</p>
+              <p onClick={()=>onGenreClick(genre.id, genre.name, props)}>{genre.name}</p>
             </div>
           )}
         </div>)
