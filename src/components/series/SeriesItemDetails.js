@@ -48,7 +48,7 @@ const SeriesItemDetails = (props) =>{
 						  </div>
 						 </div>
 						</div>)
-						
+
   if(similarSeries !== null && similarSeries['0'] !== undefined){
       let buttonSetting = {
           placeOn: "middle-inside",
@@ -84,13 +84,19 @@ const SeriesItemDetails = (props) =>{
           borderRadius: "2px"
       };
 
-      let customSlideCpnts = similarSeries.map(e => (
-        <div>
-          <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
-              className="seriesImg"
-              alt="" onClick={()=>onSeriesClick(e.id, props)}/>
-        </div>
-      ));
+      let customSlideCpnts = []
+
+      similarSeries.map(e => {
+        if(e.poster_path !== null){
+          customSlideCpnts.push(
+            <div>
+              <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
+                  className="seriesImg"
+                  alt="" onClick={()=>onSeriesClick(e.id, props)}/>
+            </div>
+          )
+        }
+      });
 
     return <div className="seriesItemDetails">
               {seriesDetails}

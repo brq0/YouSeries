@@ -37,6 +37,7 @@ class Container extends Component{
       genres: [],
       genreName: "",
       genreId: 0,
+      hasMoreItems: true,
       results: null,
       page: 1,
       result: [],
@@ -69,6 +70,7 @@ class Container extends Component{
             results: data['results'],
             pickedShow: null,
             genreName: name,
+            hasMoreItems: true,
             genreId: id,
             page: 1,
             items: []
@@ -87,7 +89,8 @@ class Container extends Component{
       .then(({ data }) => {
           this.setState({
             results: data['results'],
-            page: data.page
+            page: data.page,
+            hasMoreItems: data.page < data.total_pages ? true : false
           })
       })
   }
@@ -107,6 +110,7 @@ class Container extends Component{
       results: null,
       pickedShow: null,
       similarSeries: null,
+      hasMoreItems: true,
       page: 1,
       genreName: "",
       genreId: 0,
@@ -162,12 +166,12 @@ class Container extends Component{
     if(this.state.genreId != 0 && this.state.pickedShow == null){
       // wybrano gatunek seriali do wyswietlenia
 
-      console.log("gat")
-      const loader = <div className="loader">Loading ...</div>;
+      const loader = <div className="loader" style={{color:'white'}}>Loading ...</div>;
 
 
         if(this.state.results != null){
         this.state.results.map((r, i) => {
+          if(r.poster_path !== null){
             this.state.items.push(
               <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
             	  <img className='media-object' id="seriesItem"
@@ -175,6 +179,7 @@ class Container extends Component{
                   alt="" style={{width:'75%'}} onClick={()=>this.pickShow(r.id)}/>
               </div>
             );
+          }
         });
       }
 
@@ -189,7 +194,7 @@ class Container extends Component{
                     <InfiniteScroll key={this.state.page}
                        pageStart={0}
                        next={this.loadMoreSeries}
-                       hasMore={true}
+                       hasMore={this.state.hasMoreItems}
                        loader={loader}>
                           {this.state.items}
                     </InfiniteScroll>
