@@ -55,33 +55,33 @@ class NavigationBar extends React.Component {
   render(){
     return(
       <HashRouter>
-            <div>
-              <div style={{borderBottom: "2px solid #cc0411"}}>
-              <div className="header">
+        <div>
+          <div style={{borderBottom: "2px solid #cc0411"}}>
+            <div className="header">
 
-                  <Navbar color="dark" dark expand="md">
+              <Navbar color="dark" dark expand="md">
 
-                     <NavbarBrand className="active" id="logo"></NavbarBrand>
-                     <NavbarToggler onClick={this.toggle} />
-                     <Collapse isOpen={this.state.isOpen} navbar>
+                <NavbarBrand className="active" id="logo"></NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
 
-                       <Nav className="ml-auto" navbar>
-                           <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Strong Głowna</NavLink></NavItem>
-                           <NavItem><NavLink>Twój profil</NavLink></NavItem>
-                           <NavItem><NavLink className="active" id="search">
-                                    <SearchBar pickShow={parentProps.pickShow}
-                                                searchSeries={parentProps.searchSeries}/>
-                           </NavLink></NavItem>
-                           <NavItem><NavLink><SignOut /></NavLink></NavItem>
-                       </Nav>
+                  <Nav className="ml-auto" navbar>
+                    <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Strong Głowna</NavLink></NavItem>
+                    <NavItem><NavLink>Twój profil</NavLink></NavItem>
+                    <NavItem><NavLink className="active" id="search">
+                      <SearchBar pickShow={parentProps.pickShow}
+                        searchSeries={parentProps.searchSeries}/>
+                    </NavLink></NavItem>
+                    <NavItem className="float-right"><NavLink><SignOut /></NavLink></NavItem>
+                  </Nav>
 
-                     </Collapse>
-                   </Navbar>
+                </Collapse>
+              </Navbar>
 
-                </div>
-                </div>
-              </div>
-          </HashRouter>
+            </div>
+          </div>
+        </div>
+      </HashRouter>
 
     );
   }

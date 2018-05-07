@@ -171,8 +171,8 @@ class Container extends Component{
             this.state.items.push(
               <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
             	  <img className='media-object' id="seriesItem"
-            	   src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
-            		alt="" style={{width:'75%'}} onClick={()=>this.pickShow(r.id)}/>
+                  src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
+                  alt="" style={{width:'75%'}} onClick={()=>this.pickShow(r.id)}/>
               </div>
             );
         });
@@ -196,50 +196,46 @@ class Container extends Component{
                   </div>
 
           return (<div>
-                    <NavigationBar pickShow={this.pickShow.bind(this)}
-                                  resetPage={this.resetPage.bind(this)}
-                                  searchSeries={this.searchSeries.bind(this)}/>
-                    <div className="container">
-						<div className="row">
-							<div className="col-md-2">{genresMenu}</div>
-							<div className="col-md-10">{opt}</div>
-						</div>
-					</div>
-                  </div>)
+            <NavigationBar pickShow={this.pickShow.bind(this)}
+              resetPage={this.resetPage.bind(this)}
+              searchSeries={this.searchSeries.bind(this)}/>
+            <div style={{width:'100%'}}>
+              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+              <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+            </div>
+          </div>
+                  )
     }else if(this.state.pickedShow !== null){
       // wybrano serial do wyswietlenia
 
       const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
-                                  similarSeries={this.state.similarSeries}
-                                  pickShow={this.pickShow.bind(this)}
-                                  />
+        similarSeries={this.state.similarSeries}
+        pickShow={this.pickShow.bind(this)}
+                  />
 
       return (<div>
-                <NavigationBar pickShow={this.pickShow.bind(this)}
-                      resetPage={this.resetPage.bind(this)}
-                      searchSeries={this.searchSeries.bind(this)}/>
-				<div className="container">
-					<div className="row">
-						<div className="col-md-2">{genresMenu}</div>
-						<div className="col-md-10">{opt}</div>
-					</div>
-				</div>
-            </div> )
+        <NavigationBar pickShow={this.pickShow.bind(this)}
+          resetPage={this.resetPage.bind(this)}
+          searchSeries={this.searchSeries.bind(this)}/>
+        <div style={{width:'100%'}}>
+          <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+          <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+        </div>
+      </div>
+     )
 
     }else if(this.state.results === null){
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
 
       return  <div>
-              <NavigationBar pickShow={this.pickShow.bind(this)}
-                    resetPage={this.resetPage.bind(this)}
-                    searchSeries={this.searchSeries.bind(this)}/>
-				<div className="container">
-					<div className="row">
-						<div className="col-md-2">{genresMenu}</div>
-						<div className="col-md-10"></div>
-					</div>
-				</div>
-              </div>
+        <NavigationBar pickShow={this.pickShow.bind(this)}
+          resetPage={this.resetPage.bind(this)}
+          searchSeries={this.searchSeries.bind(this)}/>
+        <div style={{width:'100%'}}>
+          <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+        </div>
+      </div>
+
     }
 
 
