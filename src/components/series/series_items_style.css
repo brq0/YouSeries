@@ -10,6 +10,7 @@
 
 #similarSeriesLabel{
   border-bottom: 1px solid #fff;
+  color: #d7d7d7;
 }
 
  .pageLook {
@@ -19,3 +20,7 @@
  .genresDisplay{
 	 display: block;
  }
+ 
+but:hover{
+	opacity: 0.5;
+}

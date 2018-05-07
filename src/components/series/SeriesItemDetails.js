@@ -4,6 +4,8 @@ import './series_items_style.css';
 import ReactCountryFlag from 'react-country-flag';
 import CarouselSlider from "react-carousel-slider";
 
+const addButton = require('../../images/icons8-plus-70.png');
+
 
 function onSeriesClick(id, props){
   props.pickShow(id)
@@ -26,14 +28,14 @@ const SeriesItemDetails = (props) =>{
 
   const seriesDetails = (<div className="container pageLook">
 							<div className="row my-3">
-  						  	  <div className="col-md-3">
+  						  	  <div className="col-md-2,5">
 							  <div className="mx-3">
 								<img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" /><br /><br />
                               <h5><div id="voteCount">Votes: {show['vote_count']}</div></h5>
-                              <h5><div id="voteAverage">Score: {show['vote_average']}</div></h5>
+                              <h5><div id="voteAverage">Score: {show['vote_average']}</div></h5><br />
 							  </div>
 							  </div>
-						  <div className="col-md-9 pageLook">
+						  <div className="col-md-8 pageLook">
                               <h1><div id="seriesName" className="font-weight-bold" >{show['name']}</div></h1>
                               <h5><div id="yearOfSeries">Year: {year}</div></h5>
 							  <div id="seasonsAmount">Seasons: {show['seasons'].length}</div><br />
@@ -41,9 +43,12 @@ const SeriesItemDetails = (props) =>{
                               <div id="seriesGenres"><h6>Genres: </h6>{genres}</div><br />
                               <div id="seriesProductionCountries"><h6>Country: </h6>{productionCountries} </div>
                           </div>
+						  <div className="col-md-1">
+							<but><img src={addButton} title="Add to favorites"/></but>
+						  </div>
 						 </div>
 						</div>)
-
+						
   if(similarSeries !== null && similarSeries['0'] !== undefined){
       let buttonSetting = {
           placeOn: "middle-inside",
