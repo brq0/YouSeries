@@ -35,7 +35,7 @@ class Container extends Component{
 
     this.state = {
       genres: [],
-      genreName: "",
+      genreOrSearchLabel: "",
       genreId: 0,
       hasMoreItems: true,
       results: null,
@@ -69,7 +69,7 @@ class Container extends Component{
           this.setState({
             results: data['results'],
             pickedShow: null,
-            genreName: name,
+            genreOrSearchLabel: name,
             hasMoreItems: true,
             genreId: id,
             page: 1,
@@ -112,7 +112,7 @@ class Container extends Component{
       similarSeries: null,
       hasMoreItems: true,
       page: 1,
-      genreName: "",
+      genreOrSearchLabel: "",
       genreId: 0,
       items: []
     })
@@ -126,6 +126,9 @@ class Container extends Component{
       .then(({ data }) => {
         this.setState({
           results: data['results'],
+          genreId: 'series',
+          genreOrSearchLabel: `Search for: ${val}`,
+          items: [],
           pickedShow: null
         })
       })
@@ -168,7 +171,6 @@ class Container extends Component{
 
       const loader = <div className="loader" style={{color:'white'}}>Loading ...</div>;
 
-
         if(this.state.results != null){
         this.state.results.map((r, i) => {
           if(r.poster_path !== null){
@@ -189,7 +191,7 @@ class Container extends Component{
         //              />
 
       const opt = <div key={this.state.page}>
-                    <p id="genreLabel">{this.state.genreName}</p>
+                    <p id="genreLabel">{this.state.genreOrSearchLabel}</p>
 
                     <InfiniteScroll key={this.state.page}
                        pageStart={0}
