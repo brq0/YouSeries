@@ -70,6 +70,7 @@ class Container extends Component{
             pickedShow: null,
             genreName: name,
             genreId: id,
+            page: 1,
             items: []
           })
       })
@@ -92,12 +93,12 @@ class Container extends Component{
   }
 
   //usuniecie serialu wybranego
-  removePickedShow(){
-    this.setState({
-      pickedShow: null,
-      similarSeries: null
-    })
-  }
+  // removePickedShow(){
+    // this.setState({
+    //   pickedShow: null,
+    //   similarSeries: null
+    // })
+  // }
 
 
   //uzywany do powrotu do strony glownej
@@ -155,7 +156,8 @@ class Container extends Component{
     const genresMenu = <GenresMenu
                           genres={this.state.genres}
                           pickGenre={this.onClickedGenre.bind(this)}
-                          removeShow={this.removePickedShow.bind(this)}/>
+                          // removeShow={this.removePickedShow.bind(this)}
+                          />
 
     if(this.state.genreId != 0 && this.state.pickedShow == null){
       // wybrano gatunek seriali do wyswietlenia
@@ -184,7 +186,7 @@ class Container extends Component{
       const opt = <div key={this.state.page}>
                     <p id="genreLabel">{this.state.genreName}</p>
 
-                    <InfiniteScroll
+                    <InfiniteScroll key={this.state.page}
                        pageStart={0}
                        next={this.loadMoreSeries}
                        hasMore={true}
