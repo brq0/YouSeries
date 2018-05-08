@@ -11,6 +11,7 @@
 .genre{
     border-top: 2px solid #141414;
     border-bottom: 2px solid #141414;
+    max-height: 55px;
 }
 
 .genre p{
