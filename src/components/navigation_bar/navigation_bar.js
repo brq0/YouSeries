@@ -71,8 +71,8 @@ class NavigationBar extends React.Component {
 
 
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
-                    <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Strong Głowna</NavLink></NavItem>
-                    <NavItem><NavLink>Twój profil</NavLink></NavItem>
+                    <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Home</NavLink></NavItem>
+                    <NavItem><NavLink>Your Profile</NavLink></NavItem>
                     <NavItem><NavLink className="active" id="search">
                       <SearchBar pickShow={parentProps.pickShow}
                         searchSeries={parentProps.searchSeries}/>
