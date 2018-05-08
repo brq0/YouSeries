@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import './navigation_bar.css';
 import '../search_bar/search_bar.css';
@@ -43,7 +44,7 @@ class NavigationBar extends React.Component {
         parentProps = props;
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false
+          isOpen: false,
         };
       }
       toggle() {
@@ -53,6 +54,9 @@ class NavigationBar extends React.Component {
       }
 
   render(){
+    const logoutBtn = this.state.isOpen ? <NavItem className="logoutBtn-open"><NavLink><SignOut /></NavLink></NavItem>
+                                        : <NavItem className="logoutBtn"><NavLink><SignOut /></NavLink></NavItem>
+
     return(
       <HashRouter>
         <div>
@@ -63,7 +67,7 @@ class NavigationBar extends React.Component {
 
                 <NavbarBrand className="active" id="logo"></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
-                <Collapse isOpen={this.state.isOpen} navbar style={{width: '100%'}} >
+                <Collapse id="navBtn" isOpen={this.state.isOpen} navbar style={{width: '100%'}} >
 
 
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
@@ -73,7 +77,7 @@ class NavigationBar extends React.Component {
                       <SearchBar pickShow={parentProps.pickShow}
                         searchSeries={parentProps.searchSeries}/>
                     </NavLink></NavItem>
-                    <NavItem className="logoutBtn"><NavLink><SignOut /></NavLink></NavItem>
+                    {logoutBtn}
 
                   </Nav>
 

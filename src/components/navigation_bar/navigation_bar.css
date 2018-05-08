@@ -52,3 +52,7 @@
 .logoutBtn{
   margin-left: auto;
 }
+
+.logoutBtn-open{
+  margin-left: none;
+}

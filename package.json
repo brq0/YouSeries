@@ -9,6 +9,7 @@
     "firebase": "^4.13.1",
     "gh-pages": "^1.1.0",
     "i18n-iso-countries": "^3.6.2",
+    "jquery": "^3.3.1",
     "mobx": "^4.2.0",
     "mobx-react": "^5.1.2",
     "moviedb-promise": "^1.2.2",
