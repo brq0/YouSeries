@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { firebase } from '../firebase';
 import CarouselSlider from "react-carousel-slider";
 
+import $ from 'jquery';
+
 
 class UserSeriesList extends Component{
   constructor(props){
@@ -28,6 +30,10 @@ class UserSeriesList extends Component{
     this.state.propz.pickShow(id)
   }
 
+  seriesLabelClicked(){
+    $('#fullUserSeriesList').slideToggle('slow')
+    $('#userSeriesList').toggle();
+  }
 
   render(){
     var keyNames = null;
@@ -61,21 +67,41 @@ class UserSeriesList extends Component{
           background: "transparent",
         };
 
+        let itemsStyle = {
+            height: "60%",
+            background: "transparent",
+            border: "1px solid #e1e4e8",
+            borderRadius: "2px"
+        };
+
         let series = [];
+        let fullList;
 
         keyNames = Object.keys(this.state.userSeries);
 
         if(keyNames !== null){
-          keyNames.map(e=>{
-            series.push(
-              <div> <img src={this.state.userSeries[e]} className="seriesImg" alt=""
-                onClick={()=>this.onSeriesClick(e)}/> </div>
-            )
-        })
-      }
+              keyNames.map(e=>{
+                series.push(
+                  <div> <img src={this.state.userSeries[e]} className="seriesImg" alt=""
+                    onClick={()=>this.onSeriesClick(e)}/> </div>
+                )
+              })
 
-      return <div className="seriesItemDetails">
-                <p id="userSeriesLabel">Your series:</p>
+              fullList = keyNames.map(e => (
+                  <div className="col-md-3 my-3" key={e} style={{display:'inline-block'}}>
+                    <img className='media-object' id="seriesItem"
+                     src={this.state.userSeries[e]}
+                    alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e)}/>
+                  </div>
+                ))
+        }
+
+
+
+      return <div className="seriesItemList">
+                <div style={{borderBottom: '1px solid #d7d7d7', marginBottom:'5px', marginTop:'none'}}>
+                    <p id="userSeriesLabel" onClick={()=>this.seriesLabelClicked()}>Your series:</p>
+                </div>
                 <div id="userSeriesList">
                     <div style={{ width: "100%", float:'right'}}>
                     <CarouselSlider
@@ -84,9 +110,18 @@ class UserSeriesList extends Component{
                       slideCpnts = {series}
                       sliderBoxStyle={sliderBoxStyle}
                       buttonSetting={buttonSetting}
+                      itemsStyle = {itemsStyle}
 
                     />
                     </div>
+              </div>
+
+              <div id="fullUserSeriesList" style={{color:'white', display:'none'}}>
+                <div>
+                  <div>
+                    {fullList}
+                  </div>
+                </div>
               </div>
           </div>
       }else{
