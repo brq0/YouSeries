@@ -10,7 +10,6 @@ import GenresMenu from './genres_menu/genres_menu';
 import MainContent from './content/container';
 import NavigationBar from './navigation_bar/navigation_bar';
 
-import LandingPage from './content/Landing';
 import SignUpPage from './logon/SignUp';
 import SignInPage from './logon/SignIn';
 import SignOut from './logon/SignOut';
