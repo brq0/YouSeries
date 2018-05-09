@@ -10,11 +10,14 @@ import * as routes from '../../constants/routes';
 import './Logon.css';
 
 const SignUpPage = ({ history }) =>
-  <div>
-    <a id="logo"></a>
-
+<div>
+  <a id="logo"></a>
+  <div className="text-center form-signin">
     <SignUpForm history={history} />
+    <BackLink />
   </div>
+</div>
+
 
 
   const INITIAL_STATE = {
@@ -78,7 +81,7 @@ class SignUpForm extends Component {
       return (
         <div>
 
-          <div className="text-center form-signin">
+          <div>
 
             <form onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Please fill in the sign up form</h1>
@@ -139,6 +142,13 @@ const SignUpLink = () =>
     Don't have an account?
     {' '}
     <Link to={routes.SIGN_UP}>Sign Up</Link>
+  </p>
+
+  const BackLink = () =>
+  <p>
+    Already have account? Back to
+    {' '}
+    <Link to={routes.LANDING}> Sign In Page</Link>
   </p>
 
 
