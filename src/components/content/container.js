@@ -20,11 +20,11 @@ const API_KEY = 'f32b6b18b2054226bbfb00dfeda586c7'
 const API_URL = 'https://api.themoviedb.org/3/genre/tv/list'
 const QUERY = API_URL+'?api_key='+API_KEY;
 
-const MainContent = () =>
+const MainContent = (props) =>
   <div>
 
-    <Container />
-    
+    <Container authUser={props.authUser}/>
+
   </div>
 
 
@@ -34,6 +34,7 @@ class Container extends Component{
     super(props);
 
     this.state = {
+      authUser: props.authUser,
       genres: [],
       genreOrSearchLabel: "",
       genreId: 0,
@@ -218,6 +219,7 @@ class Container extends Component{
       const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
         similarSeries={this.state.similarSeries}
         pickShow={this.pickShow.bind(this)}
+        authUser={this.state.authUser}
                   />
 
       return (<div>
@@ -233,6 +235,8 @@ class Container extends Component{
 
     }else if(this.state.results === null){
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
+
+      if(this.state.authUser !== null) console.log(this.state.authUser.uid);
 
       return  <div>
         <NavigationBar pickShow={this.pickShow.bind(this)}

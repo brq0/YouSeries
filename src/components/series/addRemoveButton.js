@@ -13,7 +13,7 @@ class AddRemoveButton extends Component {
 
     this.state = {
       seriesId: props.id,
-      user: null,
+      authUser: props.authUser.uid,
       userSeries: 0
     }
 
@@ -21,12 +21,7 @@ class AddRemoveButton extends Component {
 
 
   componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      this.setState({
-        user: authUser.uid,
-      })
-
-      firebase.app.database().ref(`items/${this.state.user}/`).on('value', snapshot => {
+      firebase.app.database().ref(`items/${this.state.authUser}/`).on('value', snapshot => {
         // console.log(snapshot.val())
         // snapshot.forEach(e=> {
         //    this.state.userSeries.push(e.val());
@@ -35,22 +30,16 @@ class AddRemoveButton extends Component {
           userSeries: snapshot.val()
         })
       });
-
-    });
-
-
-
   }
 
   addSeriesButtonClick(id){
-    var newItem = firebase.app.database().ref(`items/${this.state.user}/`);
+    var newItem = firebase.app.database().ref(`items/${this.state.authUser}/`);
     newItem.update({ [id]: id});
   }
 
   removeSeriesButtonClick(id){
-    var removeItem = firebase.app.database().ref(`items/${this.state.user}/${id}`);
+    var removeItem = firebase.app.database().ref(`items/${this.state.authUser}/${id}`);
     removeItem.remove();
-    alert("remove");
   }
 
   render(){

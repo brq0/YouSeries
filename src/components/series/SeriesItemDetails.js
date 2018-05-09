@@ -46,7 +46,7 @@ const SeriesItemDetails = (props) =>{
                               <div id="seriesProductionCountries"><h6>Country: </h6>{productionCountries} </div>
                           </div>
 						  <div className="col-md-1">
-                <AddRemoveButton id={show.id} key={show.id}/>
+                <AddRemoveButton id={show.id} key={show.id} authUser={props.authUser}/>
 						  </div>
 						 </div>
 						</div>)
