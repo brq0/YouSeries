@@ -1,6 +1,15 @@
-#genreLabel{
+#genreOrSearchLabel{
   font-family: 'Raleway', Helvetica, sans-serif;
   color: #d7d7d7;
-  font-size: 15px;
-  background-color: #141414;
+  font-size: 18px;
+  margin: 10px;
+}
+
+#userSeriesLabel{
+  font-family: 'Raleway', Helvetica, sans-serif;
+  color: #d7d7d7;
+  font-size: 18px;
+  margin: 10px;
+  border-bottom: 1px solid #d7d7d7;
+  cursor:pointer;
 }

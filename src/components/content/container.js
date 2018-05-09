@@ -9,9 +9,12 @@ import SignInPage from '../logon/SignIn';
 import SeriesGenerator from '../genres/SeriesGenerator';
 import SeriesOfAGenre from '../genres/SeriesG';
 import SeriesItemDetails from '../series/SeriesItemDetails';
+import UserSeriesList from '../series/UserSeriesList';
 import GenresMenu from '../genres_menu/genres_menu';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
+
+import { firebase } from '../firebase';
 
 import './container_style.css'
 
@@ -35,10 +38,9 @@ class Container extends Component{
   constructor(props) {
     super(props);
 
-    console.log("ELO")
-    
     this.state = {
       authUser: props.authUser,
+      userSeries: 0,
       genres: [],
       genreOrSearchLabel: "",
       genreId: 0,
@@ -61,7 +63,13 @@ class Container extends Component{
           genres: data['genres']
         })
       })
-  }
+
+      firebase.app.database().ref(`items/${this.state.authUser.uid}/`).on('value', snapshot => {
+        this.setState({
+          userSeries: snapshot.val()
+        })
+      });
+}
 
   // wybranie gatunku
   onClickedGenre(id, name){
@@ -196,7 +204,7 @@ class Container extends Component{
         //              />
 
       const opt = <div key={this.state.page}>
-                    <p id="genreLabel">{this.state.genreOrSearchLabel}</p>
+                    <p id="genreOrSearchLabel">{this.state.genreOrSearchLabel}</p>
 
                     <InfiniteScroll key={this.state.page}
                        pageStart={0}
@@ -240,15 +248,18 @@ class Container extends Component{
     }else if(this.state.results === null){
       // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
 
-      if(this.state.authUser !== null) console.log(this.state.authUser.uid);
-
       return  <div>
         <NavigationBar pickShow={this.pickShow.bind(this)}
           resetPage={this.resetPage.bind(this)}
           searchSeries={this.searchSeries.bind(this)}/>
-        <div style={{width:'100%'}}>
-          <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+            <div style={{width:'100%'}}>
+              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+
+              <div style={{float:'left', display:'inline-block', width:'85%'}}>
+                <UserSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
+              </div>
         </div>
+
       </div>
 
     }

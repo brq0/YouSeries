@@ -49,7 +49,6 @@ class AddRemoveButton extends Component {
       }else{
 
         var keyNames = Object.keys(this.state.userSeries);
-          console.log(keyNames);
 
         var a = this.state.userSeries.hasOwnProperty(this.state.seriesId)
         if(a){
