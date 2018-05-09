@@ -63,7 +63,7 @@ class NavigationBar extends React.Component {
       ifAccount = true;
     }
 
-    const homeButton =  ifAccount ? <Link className="text-light" to="/">Home </Link>
+    const homeButton =  ifAccount ? <Link className="text-light nav-link" to="/">Home </Link>
 : <NavLink className="text-light" onClick={()=>refreshPage(parentProps)}>Home </NavLink>
 
     return(
@@ -80,7 +80,7 @@ class NavigationBar extends React.Component {
 
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
                     <NavItem>{homeButton}</NavItem>
-                    <NavItem><Link className="text-light" to="/account">Your Profile</Link> </NavItem>
+                    <NavItem><Link className="text-light nav-link" to="/account">Your Profile</Link> </NavItem>
                     <NavItem><NavLink className="active" id="search">
                       <SearchBar pickShow={parentProps.pickShow}
                         searchSeries={parentProps.searchSeries}/>
