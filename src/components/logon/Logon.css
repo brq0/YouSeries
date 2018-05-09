@@ -58,6 +58,8 @@ body {
   margin: 0 auto;
   cursor:pointer
 }
+
 .logoutButton:hover{
-  color:red;
+  color:#cc0411 !important;
+  transition: 0.3s;
 }
