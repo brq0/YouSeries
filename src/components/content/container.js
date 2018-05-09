@@ -27,12 +27,16 @@ const MainContent = (props) =>
 
   </div>
 
+window.onload = (e) => {
 
+}
 
 class Container extends Component{
   constructor(props) {
     super(props);
 
+    console.log("ELO")
+    
     this.state = {
       authUser: props.authUser,
       genres: [],

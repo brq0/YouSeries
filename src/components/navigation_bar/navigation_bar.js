@@ -57,6 +57,15 @@ class NavigationBar extends React.Component {
     const logoutBtn = this.state.isOpen ? <NavItem className="logoutBtn-open"><NavLink><SignOut /></NavLink></NavItem>
                                         : <NavItem className="logoutBtn"><NavLink><SignOut /></NavLink></NavItem>
 
+    const url = document.URL.toString();
+    let ifAccount = false;
+    if(url.match('account')){
+      ifAccount = true;
+    }
+
+    const homeButton =  ifAccount ? <Link className="text-light" to="/">Home </Link>
+: <NavLink className="text-light" onClick={()=>refreshPage(parentProps)}>Home </NavLink>
+
     return(
 
         <div>
@@ -70,7 +79,7 @@ class NavigationBar extends React.Component {
                 <Collapse id="navBtn" isOpen={this.state.isOpen} navbar style={{width: '100%'}} >
 
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
-                    <NavItem><Link className="text-light" to="/">Home </Link></NavItem>
+                    <NavItem>{homeButton}</NavItem>
                     <NavItem><Link className="text-light" to="/account">Your Profile</Link> </NavItem>
                     <NavItem><NavLink className="active" id="search">
                       <SearchBar pickShow={parentProps.pickShow}
