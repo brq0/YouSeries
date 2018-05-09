@@ -14,6 +14,7 @@ class AddRemoveButton extends Component {
     this.state = {
       seriesId: props.id,
       authUser: props.authUser.uid,
+      posterPath: props.posterPath,
       userSeries: 0
     }
 
@@ -22,19 +23,15 @@ class AddRemoveButton extends Component {
 
   componentDidMount() {
       firebase.app.database().ref(`items/${this.state.authUser}/`).on('value', snapshot => {
-        // console.log(snapshot.val())
-        // snapshot.forEach(e=> {
-        //    this.state.userSeries.push(e.val());
-        //  });
         this.setState({
           userSeries: snapshot.val()
         })
       });
   }
 
-  addSeriesButtonClick(id){
+  addSeriesButtonClick(id, path){
     var newItem = firebase.app.database().ref(`items/${this.state.authUser}/`);
-    newItem.update({ [id]: id});
+    newItem.update({ [id]: path});
   }
 
   removeSeriesButtonClick(id){
@@ -47,9 +44,12 @@ class AddRemoveButton extends Component {
 
       if(this.state.userSeries === null){
         return <button style={{background:'transparent', border:'none'}}
-                onClick={() => this.addSeriesButtonClick(this.state.seriesId)}>
+                onClick={() => this.addSeriesButtonClick(this.state.seriesId, this.state.posterPath)}>
                 <img src={addButton} title="Add to your series list"/></button>
       }else{
+
+        var keyNames = Object.keys(this.state.userSeries);
+          console.log(keyNames);
 
         var a = this.state.userSeries.hasOwnProperty(this.state.seriesId)
         if(a){
@@ -58,7 +58,7 @@ class AddRemoveButton extends Component {
                   <img src={removeButton} title="Remove from your series list"/></button>
         }else{
           return <button style={{background:'transparent', border:'none'}}
-                  onClick={() => this.addSeriesButtonClick(this.state.seriesId)}>
+                  onClick={() => this.addSeriesButtonClick(this.state.seriesId, this.state.posterPath)}>
                   <img src={addButton} title="Add to your series list"/></button>
         }
     }
