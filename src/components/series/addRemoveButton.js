@@ -51,16 +51,15 @@ class AddRemoveButton extends Component {
   }
 
   render(){
-    console.log(this.state.userSeries)
-
     if(this.state.userSeries !== '0'){
-      var a = this.state.userSeries.hasOwnProperty(this.state.seriesId)
+
       if(this.state.userSeries === null){
         return <button style={{background:'transparent', border:'none'}}
                 onClick={() => this.addSeriesButtonClick(this.state.seriesId)}>
                 <img src={addButton} title="Add to your series list"/></button>
       }else{
 
+        var a = this.state.userSeries.hasOwnProperty(this.state.seriesId)
         if(a){
           return <button style={{background:'transparent', border:'none'}}
                   onClick={() => this.removeSeriesButtonClick(this.state.seriesId)}>
