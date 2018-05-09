@@ -42,7 +42,8 @@ class PasswordChangeForm extends Component {
 
     const isInvalid =
       passwordOne !== passwordTwo ||
-      passwordOne === '';
+      passwordOne === '' ||
+      passwordOne.length < 6
 
     return (
 
