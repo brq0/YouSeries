@@ -3,10 +3,9 @@ import { withRouter } from 'react-router-dom';
 
 import { SignUpLink } from './SignUp';
 import * as routes from '../../constants/routes';
-import { auth, provider, firebase } from '../firebase/';
+import { auth } from '../firebase/';
 
 
-import './Logon.css';
 
 const SignInPage = ({ history }) =>
   <div>

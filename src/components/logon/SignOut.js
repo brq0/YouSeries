@@ -1,5 +1,4 @@
 import React from 'react';
-import './Logon.css';
 
 import { auth } from '../firebase/';
 

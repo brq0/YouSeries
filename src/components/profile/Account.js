@@ -1,15 +1,25 @@
 import React from 'react';
 
-import NavigationBar from '../navigation_bar/navigation_bar'
+import NavigationBar from '../navigation_bar/navigation_bar';
+import PasswordChangeForm from './PasswordChange';
+import SignInPage from '../logon/SignIn';
 
 const AccountPage = ({ authUser }) =>
-  <div>
-    <NavigationBar />
+
+
     <div>
-      <h1>Account Page</h1>
-      {console.log(authUser.displayName)}
+      {
+        authUser ? <div>
+          <NavigationBar />
+          <h1>Account: {authUser.email}</h1>
+          <PasswordChangeForm />
+        </div>
+        : <SignInPage />
+      }
+
+
     </div>
-  </div>
 
 
-      export default AccountPage;
+
+export default AccountPage;

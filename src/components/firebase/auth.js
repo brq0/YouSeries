@@ -13,7 +13,16 @@ export const doSignOut = () =>
   auth.signOut();
 
 export const doSignInWithPopup = () =>
-
   auth.signInWithPopup(provider).then((user, error) => {
     if (error) alert("Can't login by FaceBook");
   })
+
+// Password Reset
+export const doPasswordReset = (email) =>
+  auth.sendPasswordResetEmail(email);
+
+// Password Change
+export const doPasswordUpdate = (password) => {
+  auth.currentUser.updatePassword(password);
+  auth.signOut();
+}
