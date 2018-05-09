@@ -69,10 +69,9 @@ class NavigationBar extends React.Component {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse id="navBtn" isOpen={this.state.isOpen} navbar style={{width: '100%'}} >
 
-
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
-                    <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Home</NavLink></NavItem>
-                    <NavItem><NavLink to='/account'>Your Profile</NavLink></NavItem>
+                    <NavItem><Link to="/">Home </Link></NavItem>
+                    <NavItem> <Link to="/account">Your Profile</Link> </NavItem>
                     <NavItem><NavLink className="active" id="search">
                       <SearchBar pickShow={parentProps.pickShow}
                         searchSeries={parentProps.searchSeries}/>

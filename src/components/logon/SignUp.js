@@ -12,6 +12,7 @@ import './Logon.css';
 const SignUpPage = ({ history }) =>
   <div>
     <a id="logo"></a>
+
     <SignUpForm history={history} />
   </div>
 
@@ -33,6 +34,7 @@ class SignUpForm extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
+
 
   onSubmit = (event) => {
 
@@ -75,6 +77,7 @@ class SignUpForm extends Component {
 
       return (
         <div>
+
           <div className="text-center form-signin">
 
             <form onSubmit={this.onSubmit}>
