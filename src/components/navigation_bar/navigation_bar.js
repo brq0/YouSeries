@@ -58,7 +58,7 @@ class NavigationBar extends React.Component {
                                         : <NavItem className="logoutBtn"><NavLink><SignOut /></NavLink></NavItem>
 
     return(
-      <HashRouter>
+
         <div>
           <div style={{borderBottom: "2px solid #cc0411"}}>
             <div className="header">
@@ -72,7 +72,7 @@ class NavigationBar extends React.Component {
 
                   <Nav className="m1-auto" navbar style={{width:'100%'}}>
                     <NavItem><NavLink onClick={()=>refreshPage(parentProps)}>Home</NavLink></NavItem>
-                    <NavItem><NavLink>Your Profile</NavLink></NavItem>
+                    <NavItem><NavLink to='/account'>Your Profile</NavLink></NavItem>
                     <NavItem><NavLink className="active" id="search">
                       <SearchBar pickShow={parentProps.pickShow}
                         searchSeries={parentProps.searchSeries}/>
@@ -87,7 +87,7 @@ class NavigationBar extends React.Component {
             </div>
           </div>
         </div>
-      </HashRouter>
+
 
     );
   }

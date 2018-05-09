@@ -94,6 +94,7 @@ class SignInForm extends Component{
             required
           />
           <button className="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
+          { error && <p>{error.message}</p> }
         </form>
         <button id="lastElement" onClick={auth.doSignInWithPopup} className="btn btn-lg btn-primary btn-block">Sign in by FB</button>
       </div>
