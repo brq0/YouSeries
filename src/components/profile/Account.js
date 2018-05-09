@@ -11,7 +11,7 @@ const AccountPage = ({ authUser }) =>
       {
         authUser ? <div>
           <NavigationBar />
-          <h1>Account: {authUser.email}</h1>
+          <h1 className="text-center text-light">Account: {authUser.email}</h1>
           <PasswordChangeForm />
         </div>
         : <SignInPage />
