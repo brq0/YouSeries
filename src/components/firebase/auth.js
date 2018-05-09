@@ -15,9 +15,5 @@ export const doSignOut = () =>
 export const doSignInWithPopup = () =>
 
   auth.signInWithPopup(provider).then((user, error) => {
-        if (error) {
-
-        } else {
-
-        }
-})
+    if (error) alert("Can't login by FaceBook");
+  })
