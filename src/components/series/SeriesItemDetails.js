@@ -3,13 +3,15 @@ import axios from 'axios';
 import './series_items_style.css';
 import ReactCountryFlag from 'react-country-flag';
 import CarouselSlider from "react-carousel-slider";
+import AddRemoveButton from "./addRemoveButton";
 
-const addButton = require('../../images/icons8-plus-70.png');
+import { firebase } from '../firebase';
 
 
 function onSeriesClick(id, props){
   props.pickShow(id)
 }
+
 
 const SeriesItemDetails = (props) =>{
   let countries = require("i18n-iso-countries");
@@ -44,7 +46,7 @@ const SeriesItemDetails = (props) =>{
                               <div id="seriesProductionCountries"><h6>Country: </h6>{productionCountries} </div>
                           </div>
 						  <div className="col-md-1">
-							<but><img src={addButton} title="Add to favorites"/></but>
+                <AddRemoveButton id={show.id} key={show.id}/>
 						  </div>
 						 </div>
 						</div>)
