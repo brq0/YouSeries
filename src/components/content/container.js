@@ -24,7 +24,7 @@ const MainContent = () =>
   <div>
 
     <Container />
-
+    
   </div>
 
 
@@ -173,7 +173,6 @@ class Container extends Component{
 
         if(this.state.results != null){
         this.state.results.map((r, i) => {
-          if(r !== null){
           if(r.poster_path !== null){
             this.state.items.push(
               <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
@@ -183,7 +182,6 @@ class Container extends Component{
               </div>
             );
           }
-        }
         });
       }
 

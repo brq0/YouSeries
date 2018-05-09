@@ -1,4 +1,4 @@
-import { auth } from './firebase';
+import { auth, provider } from './firebase';
 
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
@@ -11,3 +11,9 @@ export const doSignInWithEmailAndPassword = (email, password) =>
   // Sign out
 export const doSignOut = () =>
   auth.signOut();
+
+export const doSignInWithPopup = () =>
+
+  auth.signInWithPopup(provider).then((user, error) => {
+    if (error) alert("Can't login by FaceBook");
+  })

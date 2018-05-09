@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import { SignUpLink } from './SignUp';
 import * as routes from '../../constants/routes';
-import { auth } from '../firebase/';
+import { auth, provider, firebase } from '../firebase/';
+
 
 import './Logon.css';
 
@@ -34,6 +35,8 @@ class SignInForm extends Component{
     this.state = { ...INITIAL_STATE };
   }
 
+
+
   onSubmit = (event) => {
     const {
       email,
@@ -55,6 +58,8 @@ class SignInForm extends Component{
 
     event.preventDefault();
   }
+
+
 
   render(){
 
@@ -89,8 +94,9 @@ class SignInForm extends Component{
             required
           />
           <button className="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
+          { error && <p>{error.message}</p> }
         </form>
-        <button id="lastElement" className="btn btn-lg btn-primary btn-block">Sign in by FB</button>
+        <button id="lastElement" onClick={auth.doSignInWithPopup} className="btn btn-lg btn-primary btn-block">Sign in by FB</button>
       </div>
         );
   }

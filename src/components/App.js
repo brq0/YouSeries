@@ -10,9 +10,9 @@ import GenresMenu from './genres_menu/genres_menu';
 import MainContent from './content/container';
 import NavigationBar from './navigation_bar/navigation_bar';
 
-import LandingPage from './content/Landing';
 import SignUpPage from './logon/SignUp';
 import SignInPage from './logon/SignIn';
+import AccountPage from './profile/Account'
 import SignOut from './logon/SignOut';
 
 import * as routes from '../constants/routes';
@@ -44,11 +44,14 @@ class App extends Component {
   render() {
     return (
       <Router>
+
         <div>
 
           <Route exact path={routes.LANDING} component={() => this.state.authUser ? <MainContent /> : <SignInPage />} />
 
           <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+
+          <Route exact path={routes.ACCOUNT} component={() => <AccountPage authUser={this.state.authUser}/>} />
 
         </div>
 
