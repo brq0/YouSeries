@@ -43,10 +43,13 @@ class AddRemoveButton extends Component {
   }
 
   addSeriesButtonClick(id){
-    alert(id);
+    var newItem = firebase.app.database().ref(`items/${this.state.user}/`);
+    newItem.update({ [id]: id});
   }
 
   removeSeriesButtonClick(id){
+    var removeItem = firebase.app.database().ref(`items/${this.state.user}/${id}`);
+    removeItem.remove();
     alert("remove");
   }
 
