@@ -32,11 +32,15 @@ class AddRemoveButton extends Component {
   addSeriesButtonClick(id, path){
     var newItem = firebase.app.database().ref(`items/${this.state.authUser}/`);
     newItem.update({ [id]: path});
+
+    // newItem.off();
   }
 
   removeSeriesButtonClick(id){
     var removeItem = firebase.app.database().ref(`items/${this.state.authUser}/${id}`);
     removeItem.remove();
+
+    // removeItem.off();
   }
 
   render(){

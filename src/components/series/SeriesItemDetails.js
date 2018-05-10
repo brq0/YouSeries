@@ -100,7 +100,6 @@ const SeriesItemDetails = (props) =>{
         }
       });
 
-      console.log("EE", similarSeries)
 
     return <div className="seriesItemDetails">
               {seriesDetails}

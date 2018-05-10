@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { firebase } from '../firebase';
 import CarouselSlider from "react-carousel-slider";
+import axios from 'axios';
 
 import $ from 'jquery';
 
 
-class UserSeriesList extends Component{
+class PopularSeriesList extends Component{
   constructor(props){
     super(props);
 
@@ -13,16 +14,18 @@ class UserSeriesList extends Component{
       user: props.authUser.uid,
       userSeries: 0,
       propz: props,
+      results: null,
     }
   }
 
   componentDidMount() {
-    firebase.app.database().ref(`items/${this.state.user}/`).on('value', snapshot => {
-
-      this.setState({
-        userSeries: snapshot.val()
+    var QUERY = 'https://api.themoviedb.org/3/tv/popular?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&page=1'
+    axios.get(`${QUERY}`)
+      .then(({ data }) => {
+        this.setState({
+          results: data['results']
+        })
       })
-    });
 
   }
 
@@ -30,16 +33,16 @@ class UserSeriesList extends Component{
     this.state.propz.pickShow(id)
   }
 
-  seriesLabelClicked(){
-    $('#fullUserSeriesList').slideToggle('slow')
-    $('#userSeriesSlider').toggle();
+  popularSeriesLabelClicked(){
+    $('#fullPopularSeriesList').slideToggle('slow')
+    $('#popularSeriesSlider').toggle();
+    $('#userSeriesPanel').toggle();
+    // $('#fullUserSeriesList').hide();
   }
 
   render(){
-    var keyNames = null;
 
-    if(this.state.userSeries !== 0){
-        if(this.state.userSeries !== null){
+      if(this.state.results !== null){
         let buttonSetting = {
             placeOn: "middle-inside",
             hoverEvent: true,
@@ -65,7 +68,6 @@ class UserSeriesList extends Component{
           height: "20%",
           width: "95%",
           background: "transparent",
-          marginBottom: '50px'
         };
 
         let itemsStyle = {
@@ -78,32 +80,30 @@ class UserSeriesList extends Component{
         let series = [];
         let fullList;
 
-        keyNames = Object.keys(this.state.userSeries);
-
-        if(keyNames !== null){
-              keyNames.map(e=>{
+        if(this.state.results !== null){
+              this.state.results.map(e=>{
                 series.push(
-                  <div> <img src={this.state.userSeries[e]} className="seriesImg" alt=""
-                    onClick={()=>this.onSeriesClick(e)}/> </div>
+                  <div key={e.id*2}> <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`} className="seriesImg" alt=""
+                    onClick={()=>this.onSeriesClick(e.id)}/> </div>
                 )
               })
 
-              fullList = keyNames.map(e => (
-                  <div className="col-md-3 my-3" key={e} style={{display:'inline-block'}}>
+              fullList = this.state.results.map(e => (
+                  <div className="col-md-3 my-3" key={e.id*2} style={{display:'inline-block'}}>
                     <img className='media-object' id="seriesItem"
-                     src={this.state.userSeries[e]}
-                    alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e)}/>
+                     src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
+                    alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e.id)}/>
                   </div>
                 ))
         }
 
 
 
-      return <div className="seriesItemList" id="userSeriesPanel">
+      return <div className="popularSeriesItemList">
                 <div style={{borderBottom: '1px solid #d7d7d7', marginBottom:'5px', marginTop:'none'}}>
-                    <p id="userSeriesLabel" onClick={()=>this.seriesLabelClicked()}>Your series:</p>
+                    <p id="popularSeriesLabel" onClick={()=>this.popularSeriesLabelClicked()}>Most popular series:</p>
                 </div>
-                <div id="userSeriesSlider">
+                <div id="popularSeriesSlider">
                     <div style={{ width: "100%", float:'right'}}>
                     <CarouselSlider
                       accEle = {{dots: false, flag: true}}
@@ -117,7 +117,7 @@ class UserSeriesList extends Component{
                     </div>
               </div>
 
-              <div id="fullUserSeriesList" style={{color:'white', display:'none'}}>
+              <div id="fullPopularSeriesList" style={{color:'white', display:'none'}}>
                 <div>
                   <div>
                     {fullList}
@@ -126,17 +126,13 @@ class UserSeriesList extends Component{
               </div>
           </div>
       }else{
-        return <div style={{color: 'white'}}> Nie wybrano seriali </div>
+        return <div style={{color: 'white'}}>POPULAR SERIES LOADING</div>
       }
 
-    }else{
-      // wczytywanie lub cos sie popsulo
-      return <div style={{color:'white'}}></div>
-    }
-
-
   }
+
+
 }
 
 
-export default UserSeriesList;
+export default PopularSeriesList;

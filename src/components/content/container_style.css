@@ -17,3 +17,16 @@
   color:#cc0411 !important;
   transition: 0.3s;
 }
+
+#popularSeriesLabel{
+  font-family: 'Raleway', Helvetica, sans-serif;
+  color: #d7d7d7;
+  font-size: 18px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+#popularSeriesLabel:hover{
+  color:#cc0411 !important;
+  transition: 0.3s;
+}

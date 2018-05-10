@@ -10,6 +10,7 @@ import SeriesGenerator from '../genres/SeriesGenerator';
 import SeriesOfAGenre from '../genres/SeriesG';
 import SeriesItemDetails from '../series/SeriesItemDetails';
 import UserSeriesList from '../series/UserSeriesList';
+import PopularSeriesList from '../series/PopularSeriesList';
 import GenresMenu from '../genres_menu/genres_menu';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -134,7 +135,6 @@ class Container extends Component{
   //lub enter na searchbarze
   searchSeries(val){
     var query = `https://api.themoviedb.org/3/search/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&query=${val}&page=1`
-    console.log("CLICK")
     axios.get(query)
       .then(({ data }) => {
         this.setState({
@@ -151,7 +151,6 @@ class Container extends Component{
   pickShow(id){
     document.body.scrollTop = document.documentElement.scrollTop = 0; //scrolluje do poczatku strony
 
-    console.log("pick", id)
     var query = `https://api.themoviedb.org/3/tv/${id}?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US'`
     var querySimilar = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&page=1`
 
@@ -257,6 +256,8 @@ class Container extends Component{
 
               <div style={{float:'left', display:'inline-block', width:'85%'}}>
                 <UserSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
+                <PopularSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
+
               </div>
         </div>
 
