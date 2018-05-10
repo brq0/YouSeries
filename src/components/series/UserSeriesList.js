@@ -35,6 +35,12 @@ class UserSeriesList extends Component{
     $('#userSeriesSlider').toggle();
   }
 
+  noSeriesInUserListClicked(){
+    $('#fullPopularSeriesList').slideToggle('slow')
+    $('#popularSeriesSlider').toggle();
+    $('#userSeriesPanel').toggle();
+  }
+
   render(){
     var keyNames = null;
 
@@ -126,7 +132,10 @@ class UserSeriesList extends Component{
               </div>
           </div>
       }else{
-        return <div style={{color: 'white'}}> Nie wybrano seriali </div>
+        return <div id="userSeriesPanel" style={{color: 'white'}}>
+                  <p id="noSeriesInUserListLabel"> You have no series in your list </p>
+                  <p id="checkPopularSeries" onClick={()=>this.noSeriesInUserListClicked()}>Check the most popular series</p>
+                </div>
       }
 
     }else{
