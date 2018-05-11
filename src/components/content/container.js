@@ -184,7 +184,7 @@ class Container extends Component{
                 this.state.items.push(
                   <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
                 	  <img className='media-object' id="seriesItem"
-                      src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w185/${r.poster_path}`}
                       alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
                   </div>
                 );

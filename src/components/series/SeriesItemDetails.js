@@ -29,7 +29,7 @@ const SeriesItemDetails = (props) =>{
 							<div className="row my-3">
   						  	  <div className="col-md-2,5">
 							  <div className="mx-3">
-								<img src={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" /><br /><br />
+								<img src={`https://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" /><br /><br />
                               <h5><div id="voteCount">Votes: {show['vote_count']}</div></h5>
                               <h5><div id="voteAverage">Score: {show['vote_average']}</div></h5><br />
 							  </div>
@@ -43,7 +43,7 @@ const SeriesItemDetails = (props) =>{
                               <div id="seriesProductionCountries"><h6>Country: </h6>{productionCountries} </div>
                           </div>
 						  <div className="col-md-1">
-                <AddRemoveButton id={show.id} key={show.id} authUser={props.authUser} posterPath={`http://image.tmdb.org/t/p/w185/${show['poster_path']}`}/>
+                <AddRemoveButton id={show.id} key={show.id} authUser={props.authUser} posterPath={`https://image.tmdb.org/t/p/w185/${show['poster_path']}`}/>
 						  </div>
 						 </div>
 						</div>)
@@ -89,7 +89,7 @@ const SeriesItemDetails = (props) =>{
         if(e.poster_path !== null){
           customSlideCpnts.push(
             <div>
-              <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
+              <img src={`https://image.tmdb.org/t/p/w185/${e.poster_path}`}
                   className="seriesImg"
                   alt="" onClick={()=>onSeriesClick(e.id, props)}/>
             </div>

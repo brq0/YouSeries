@@ -82,7 +82,7 @@ class PopularSeriesList extends Component{
         if(this.state.results !== null){
               this.state.results.forEach(e=>{
                 series.push(
-                  <div key={e.id*2}> <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`} className="seriesImg" alt=""
+                  <div key={e.id*2}> <img src={`https://image.tmdb.org/t/p/w185/${e.poster_path}`} className="seriesImg" alt=""
                     onClick={()=>this.onSeriesClick(e.id)}/> </div>
                 )
               })
@@ -90,7 +90,7 @@ class PopularSeriesList extends Component{
               fullList = this.state.results.map(e => (
                   <div className="col-md-3 my-3" key={e.id*2} style={{display:'inline-block'}}>
                     <img className='media-object' id="seriesItem"
-                     src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`}
+                     src={`https://image.tmdb.org/t/p/w185/${e.poster_path}`}
                     alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e.id)}/>
                   </div>
                 ))
