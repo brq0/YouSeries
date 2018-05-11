@@ -24,3 +24,10 @@
 but:hover{
 	opacity: 0.5;
 }
+
+.inset {
+	border-style: inset;
+	outline-offset: 20px;
+	text-align:center;
+	border-color: #d7d7d7;
+}

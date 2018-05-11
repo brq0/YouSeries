@@ -30,8 +30,12 @@ const SeriesItemDetails = (props) =>{
   						  	  <div className="col-md-2,5">
 							  <div className="mx-3">
 								<img src={`https://image.tmdb.org/t/p/w185/${show['poster_path']}`} alt="" /><br /><br />
-                              <h5><div id="voteCount">Votes: {show['vote_count']}</div></h5>
-                              <h5><div id="voteAverage">Score: {show['vote_average']}</div></h5><br />
+                              <div className="inset">
+								<h5><div id="voteCount">Votes: {show['vote_count']}</div></h5>
+							  </div><br />
+                              <div className="inset">
+								<h5><div id="voteAverage">Score: {show['vote_average']}</div></h5>
+							  </div>
 							  </div>
 							  </div>
 						  <div className="col-md-8 pageLook">
