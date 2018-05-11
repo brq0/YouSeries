@@ -1,4 +1,4 @@
-export const SIGN_UP = '/signup';
-export const SIGN_IN = '/signin';
+export const SIGN_UP = '/YouSeries/signup';
+export const SIGN_IN = '/YouSeries/signin';
 export const LANDING = '/YouSeries/';
 export const ACCOUNT = '/YouSeries/account';

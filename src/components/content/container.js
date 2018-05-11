@@ -6,6 +6,8 @@ import SeriesItemDetails from '../series/SeriesItemDetails';
 import UserSeriesList from '../series/UserSeriesList';
 import PopularSeriesList from '../series/PopularSeriesList';
 import GenresMenu from '../genres_menu/genres_menu';
+import Account from '../profile/Account';
+
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -40,9 +42,9 @@ class Container extends Component{
       genreOrSearchLabel: "",
       genreId: 0,
       hasMoreItems: true,
+      action: 1,               //1 - strona glowna, seriale itp : 2 - profil uzytkownika
       results: null,
       page: 1,
-      result: [],
       pickedShow: null,
       similarSeries: null,
       items: []
@@ -64,7 +66,7 @@ class Container extends Component{
           userSeries: snapshot.val()
         })
       });
-}
+  }
 
   // wybranie gatunku
   onClickedGenre(id, name){
@@ -78,6 +80,7 @@ class Container extends Component{
             results: data['results'],
             pickedShow: null,
             genreOrSearchLabel: name,
+            action: 1,
             hasMoreItems: true,
             genreId: id,
             page: 1,
@@ -103,15 +106,6 @@ class Container extends Component{
       })
   }
 
-  //usuniecie serialu wybranego
-  // removePickedShow(){
-    // this.setState({
-    //   pickedShow: null,
-    //   similarSeries: null
-    // })
-  // }
-
-
   //uzywany do powrotu do strony glownej
   resetPage(){
     this.setState({
@@ -120,9 +114,16 @@ class Container extends Component{
       similarSeries: null,
       hasMoreItems: true,
       page: 1,
+      action: 1,
       genreOrSearchLabel: "",
       genreId: 0,
       items: []
+    })
+  }
+
+  userProfileClicked(){
+    this.setState({
+      action: 2
     })
   }
 
@@ -135,6 +136,7 @@ class Container extends Component{
           results: data['results'],
           genreId: 'series',
           genreOrSearchLabel: `Search for: ${val}`,
+          action: 1,
           items: [],
           pickedShow: null
         })
@@ -152,7 +154,8 @@ class Container extends Component{
       .then(({ data }) => {
         this.setState({
           pickedShow: data,
-          result: []
+          action: 1,
+          results: []
         })
       })
 
@@ -166,96 +169,117 @@ class Container extends Component{
   }
 
   render(){
+
     const genresMenu = <GenresMenu
                           genres={this.state.genres}
                           pickGenre={this.onClickedGenre.bind(this)}
-                          // removeShow={this.removePickedShow.bind(this)}
                           />
 
-    if(this.state.genreId !== 0 && this.state.pickedShow === null){
-      // wybrano gatunek seriali do wyswietlenia
+    if(this.state.action !== 2){   // === 1
+        if(this.state.genreId !== 0 && this.state.pickedShow === null){
+          // wybrano gatunek seriali do wyswietlenia
 
-      const loader = <div className="loader" style={{color:'white'}}>Loading ...</div>;
+          const loader = <div className="loader" style={{color:'white'}}>Loading ...</div>;
 
-        if(this.state.results !== null){
-        this.state.results.forEach((r) => {
-          if(r !== null){
-              if(r.poster_path !== null){
-                this.state.items.push(
-                  <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
-                	  <img className='media-object' id="seriesItem"
-                      src={`https://image.tmdb.org/t/p/w185/${r.poster_path}`}
-                      alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
-                  </div>
-                );
+            if(this.state.results !== null){
+            this.state.results.forEach((r) => {
+              if(r !== null){
+                  if(r.poster_path !== null){
+                    this.state.items.push(
+                      <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
+                    	  <img className='media-object' id="seriesItem"
+                          src={`https://image.tmdb.org/t/p/w185/${r.poster_path}`}
+                          alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
+                      </div>
+                    );
+                  }
               }
+            });
           }
-        });
-      }
 
-      const opt = <div key={this.state.page}>
-                    <p id="genreOrSearchLabel">{this.state.genreOrSearchLabel}</p>
+          const opt = <div key={this.state.page}>
+                        <p id="genreOrSearchLabel">{this.state.genreOrSearchLabel}</p>
 
-                    <InfiniteScroll key={this.state.page}
-                       pageStart={0}
-                       next={this.loadMoreSeries}
-                       hasMore={this.state.hasMoreItems}
-                       loader={loader}>
-                          {this.state.items}
-                    </InfiniteScroll>
+                        <InfiniteScroll key={this.state.page}
+                           pageStart={0}
+                           next={this.loadMoreSeries}
+                           hasMore={this.state.hasMoreItems}
+                           loader={loader}>
+                              {this.state.items}
+                        </InfiniteScroll>
+                      </div>
+
+              return (
+                <div>
+                  <NavigationBar pickShow={this.pickShow.bind(this)}
+                    resetPage={this.resetPage.bind(this)}
+                    searchSeries={this.searchSeries.bind(this)}
+                    userProfileClicked={this.userProfileClicked.bind(this)}/>
+
+                      <div style={{width:'100%'}}>
+                        <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+                        <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+                      </div>
+
+                </div>)
+
+        }else if(this.state.pickedShow !== null){
+          // wybrano serial do wyswietlenia
+
+          const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
+            similarSeries={this.state.similarSeries}
+            pickShow={this.pickShow.bind(this)}
+            authUser={this.state.authUser}
+                      />
+
+          return (
+              <div>
+                <NavigationBar pickShow={this.pickShow.bind(this)}
+                  resetPage={this.resetPage.bind(this)}
+                  searchSeries={this.searchSeries.bind(this)}
+                  userProfileClicked={this.userProfileClicked.bind(this)}/>
+
+                    <div style={{width:'100%'}}>
+                      <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+                      <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
+                    </div>
+
+              </div>
+         )
+
+        }else if(this.state.results === null){
+          // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
+
+          return  (
+            <div>
+              <NavigationBar pickShow={this.pickShow.bind(this)}
+                resetPage={this.resetPage.bind(this)}
+                searchSeries={this.searchSeries.bind(this)}
+                userProfileClicked={this.userProfileClicked.bind(this)}/>
+
+                  <div style={{width:'100%'}}>
+                    <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+
+                      <div style={{float:'left', display:'inline-block', width:'85%'}}>
+                        <UserSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
+                        <PopularSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
+
+                      </div>
                   </div>
 
-          return (<div>
-            <NavigationBar pickShow={this.pickShow.bind(this)}
-              resetPage={this.resetPage.bind(this)}
-              searchSeries={this.searchSeries.bind(this)}/>
-            <div style={{width:'100%'}}>
-              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-              <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-            </div>
-          </div>
-                  )
-    }else if(this.state.pickedShow !== null){
-      // wybrano serial do wyswietlenia
+          </div> )
 
-      const opt = <SeriesItemDetails pickedShow={this.state.pickedShow}
-        similarSeries={this.state.similarSeries}
-        pickShow={this.pickShow.bind(this)}
-        authUser={this.state.authUser}
-                  />
-
-      return (<div>
-        <NavigationBar pickShow={this.pickShow.bind(this)}
-          resetPage={this.resetPage.bind(this)}
-          searchSeries={this.searchSeries.bind(this)}/>
-        <div style={{width:'100%'}}>
-          <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
-          <div style={{float:'left' ,display:'inline-block', width:'85%'}}>{opt}</div>
-        </div>
-      </div>
-     )
-
-    }else if(this.state.results === null){
-      // nie wybrano gatunku seriali ani serialu do wyswietlenia (poczatek strony .....)
-
+        }
+    }else if(this.state.action === 2){ // profil uzytkownika
       return  <div>
         <NavigationBar pickShow={this.pickShow.bind(this)}
           resetPage={this.resetPage.bind(this)}
-          searchSeries={this.searchSeries.bind(this)}/>
-            <div style={{width:'100%'}}>
-              <div style={{width:'15%', float:'left', display:'inline-block'}}>{genresMenu}</div>
+          searchSeries={this.searchSeries.bind(this)}
+          userProfileClicked={this.userProfileClicked.bind(this)}/>
 
-              <div style={{float:'left', display:'inline-block', width:'85%'}}>
-                <UserSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
-                <PopularSeriesList authUser={this.state.authUser} pickShow={this.pickShow.bind(this)} />
-
-              </div>
-        </div>
-
+          <Account authUser={this.state.authUser}/>
       </div>
-
     }
-
 
   }
 
