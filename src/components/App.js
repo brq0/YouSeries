@@ -42,6 +42,8 @@ class App extends Component {
 
           <Route exact path={routes.LANDING} component={() => this.state.authUser ? <MainContent authUser={this.state.authUser} /> : <SignInPage />} />
 
+          <Route exact path={routes.SIGN_IN} component={() => this.state.authUser ? <MainContent authUser={this.state.authUser} /> : <SignInPage />} />
+
           <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
 
           <Route exact path={routes.ACCOUNT} component={() => <AccountPage authUser={this.state.authUser}/>} />
