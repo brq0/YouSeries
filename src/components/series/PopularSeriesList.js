@@ -125,7 +125,7 @@ class PopularSeriesList extends Component{
               </div>
           </div>
       }else{
-        return <div style={{color: 'white'}}>POPULAR SERIES LOADING</div>
+        return <div style={{color: 'white'}}></div>
       }
 
   }
