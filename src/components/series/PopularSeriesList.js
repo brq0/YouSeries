@@ -91,7 +91,7 @@ class PopularSeriesList extends Component{
                   <div className="col-md-3 my-3" key={e.id*2} style={{display:'inline-block'}}>
                     <img className='media-object' id="seriesItem"
                      src={`https://image.tmdb.org/t/p/w185/${e.poster_path}`}
-                    alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e.id)}/>
+                    alt="" style={{width:'75%', border:'1px solid white', cursor:'pointer'}} onClick={()=>this.onSeriesClick(e.id)}/>
                   </div>
                 ))
         }

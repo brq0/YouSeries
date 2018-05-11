@@ -40,6 +40,8 @@ class SearchBar extends Component {
   }
 
   onKeyPressed = (e) => {
+    this.onBlur();
+    
     if (e.key === 'Enter') {
       let val = document.getElementById("searchBar").value;
       if(val.length >= 2){

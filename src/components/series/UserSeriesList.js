@@ -98,7 +98,7 @@ class UserSeriesList extends Component{
                   <div className="col-md-3 my-3" key={e} style={{display:'inline-block'}}>
                     <img className='media-object' id="seriesItem"
                      src={this.state.userSeries[e]}
-                    alt="" style={{width:'75%', border:'1px solid white'}} onClick={()=>this.onSeriesClick(e)}/>
+                    alt="" style={{width:'75%', border:'1px solid white', cursor:'pointer'}} onClick={()=>this.onSeriesClick(e)}/>
                   </div>
                 ))
         }
