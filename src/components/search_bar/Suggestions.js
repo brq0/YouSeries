@@ -3,7 +3,6 @@ import './search_bar.css';
 
 
 function processSelection(seriesId, props) {
-    console.log(seriesId)
     props.pickShow(seriesId)
 }
 
@@ -18,7 +17,7 @@ const Suggestions = (props) => {
     <div className="suggestion" key={r.id}
       onMouseDown={()=>processSelection(r.id, props)}>
       <span>{r.name} ({getYear(`${r.first_air_date}`)})</span>
-      <img src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`} alt=""
+      <img src={`https://image.tmdb.org/t/p/w185/${r.poster_path}`} alt=""
         style={{width:'60px', height:'80px', position:'absolute', right:'5px'}}/>
 	  </div>
   : <span key={r.id}></span>
