@@ -87,7 +87,7 @@ class UserSeriesList extends Component{
         keyNames = Object.keys(this.state.userSeries);
 
         if(keyNames !== null){
-              keyNames.map(e=>{
+              keyNames.forEach(e=>{
                 series.push(
                   <div> <img src={this.state.userSeries[e]} className="seriesImg" alt=""
                     onClick={()=>this.onSeriesClick(e)}/> </div>

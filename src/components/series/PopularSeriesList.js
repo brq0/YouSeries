@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { firebase } from '../firebase';
 import CarouselSlider from "react-carousel-slider";
 import axios from 'axios';
 
@@ -81,7 +80,7 @@ class PopularSeriesList extends Component{
         let fullList;
 
         if(this.state.results !== null){
-              this.state.results.map(e=>{
+              this.state.results.forEach(e=>{
                 series.push(
                   <div key={e.id*2}> <img src={`http://image.tmdb.org/t/p/w185/${e.poster_path}`} className="seriesImg" alt=""
                     onClick={()=>this.onSeriesClick(e.id)}/> </div>

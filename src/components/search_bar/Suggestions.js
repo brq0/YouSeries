@@ -1,16 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import './search_bar.css';
-import SeriesItemDetails from '../series/SeriesItemDetails';
 
 
 function processSelection(seriesId, props) {
     console.log(seriesId)
     props.pickShow(seriesId)
-}
-
-function onBlur() {
-  document.getElementById("suggContainer").style.display='none'
 }
 
 function getYear(date){

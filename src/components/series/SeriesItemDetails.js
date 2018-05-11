@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './series_items_style.css';
 import ReactCountryFlag from 'react-country-flag';
 import CarouselSlider from "react-carousel-slider";
 import AddRemoveButton from "./addRemoveButton";
-
-import { firebase } from '../firebase';
 
 
 function onSeriesClick(id, props){
@@ -88,7 +85,7 @@ const SeriesItemDetails = (props) =>{
 
       let customSlideCpnts = []
 
-      similarSeries.map(e => {
+      similarSeries.forEach(e => {
         if(e.poster_path !== null){
           customSlideCpnts.push(
             <div>

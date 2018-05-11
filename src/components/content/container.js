@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
-
 import NavigationBar from '../navigation_bar/navigation_bar';
-import SignInPage from '../logon/SignIn';
 
-import SeriesGenerator from '../genres/SeriesGenerator';
-import SeriesOfAGenre from '../genres/SeriesG';
 import SeriesItemDetails from '../series/SeriesItemDetails';
 import UserSeriesList from '../series/UserSeriesList';
 import PopularSeriesList from '../series/PopularSeriesList';
@@ -74,7 +68,7 @@ class Container extends Component{
 
   // wybranie gatunku
   onClickedGenre(id, name){
-    var query = `https://api.themoviedb.org/3/discover/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US
+    var query = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-US
           &sort_by=popularity.desc&page=1&with_genres=
               ${id}`;
 
@@ -94,7 +88,7 @@ class Container extends Component{
 
   loadMoreSeries(){
     let page = this.state.page + 1;
-    var query = `https://api.themoviedb.org/3/discover/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US
+    var query = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-US
           &sort_by=popularity.desc&page=${page}&with_genres=
               ${this.state.genreId}`;
 
@@ -134,7 +128,7 @@ class Container extends Component{
 
   //lub enter na searchbarze
   searchSeries(val){
-    var query = `https://api.themoviedb.org/3/search/tv?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&query=${val}&page=1`
+    var query = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${val}&page=1`
     axios.get(query)
       .then(({ data }) => {
         this.setState({
@@ -151,8 +145,8 @@ class Container extends Component{
   pickShow(id){
     document.body.scrollTop = document.documentElement.scrollTop = 0; //scrolluje do poczatku strony
 
-    var query = `https://api.themoviedb.org/3/tv/${id}?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US'`
-    var querySimilar = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=f32b6b18b2054226bbfb00dfeda586c7&language=en-US&page=1`
+    var query = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US'`
+    var querySimilar = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`
 
     axios.get(query)
       .then(({ data }) => {
@@ -178,29 +172,24 @@ class Container extends Component{
                           // removeShow={this.removePickedShow.bind(this)}
                           />
 
-    if(this.state.genreId != 0 && this.state.pickedShow == null){
+    if(this.state.genreId !== 0 && this.state.pickedShow === null){
       // wybrano gatunek seriali do wyswietlenia
 
       const loader = <div className="loader" style={{color:'white'}}>Loading ...</div>;
 
-        if(this.state.results != null){
-        this.state.results.map((r, i) => {
+        if(this.state.results !== null){
+        this.state.results.forEach((r) => {
           if(r.poster_path !== null){
             this.state.items.push(
               <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
             	  <img className='media-object' id="seriesItem"
                   src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
-                  alt="" style={{width:'75%'}} onClick={()=>this.pickShow(r.id)}/>
+                  alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
               </div>
             );
           }
         });
       }
-
-
-        // <SeriesGenerator results={this.state.results}
-        //               pickShow={this.pickShow.bind(this)}
-        //              />
 
       const opt = <div key={this.state.page}>
                     <p id="genreOrSearchLabel">{this.state.genreOrSearchLabel}</p>
