@@ -179,14 +179,16 @@ class Container extends Component{
 
         if(this.state.results !== null){
         this.state.results.forEach((r) => {
-          if(r.poster_path !== null){
-            this.state.items.push(
-              <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
-            	  <img className='media-object' id="seriesItem"
-                  src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
-                  alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
-              </div>
-            );
+          if(r !== null){
+              if(r.poster_path !== null){
+                this.state.items.push(
+                  <div className="col-md-3 my-3" key={r.id} style={{display:'inline-block'}}>
+                	  <img className='media-object' id="seriesItem"
+                      src={`http://image.tmdb.org/t/p/w185/${r.poster_path}`}
+                      alt="" style={{width:'75%', cursor:'pointer'}} onClick={()=>this.pickShow(r.id)}/>
+                  </div>
+                );
+              }
           }
         });
       }
